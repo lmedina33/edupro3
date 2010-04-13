@@ -97,7 +97,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 		<tr>
 			<td>&nbsp;</td>
 			<td><div align="right" class="text1">Carrera:</div></td>
-			<td class="text2">Diversificado ___ Bachillerato ___</td>
+			<td class="text2">Magisterio ___ Bachillerato ___</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 		</tr>
