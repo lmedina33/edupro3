@@ -47,9 +47,10 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 		<td width="15%"><img src="../images/logo.jpg" width="110" height="117" /></td>
 		<td>
 		<p align="center">
-		INSTITUTO NACIONAL DE EDUCACION BASICA<br />
 		ESCUELA NORMAL RURAL No. 5<br />
-		Santa Elena, Flores, Pet&eacute;n. Tel. 79262393<br /><br />
+		&quot;Prof. Julio Edmundo Rosado Pinelo&quot;<br />
+		Santa Elena, Flores, Pet&eacute;n. Tel. 79260549<br />
+		www.enormal5.com<br /><br />
 		&quot;SIMIENTE DE CULTURA EN PET&Eacute;N&quot;<br /><br />
 		<u><strong>FICHA DE RENDIMIENTO ESCOLAR</strong></u>
 		</p>
@@ -90,6 +91,13 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 			<td>&nbsp;</td>
 			<td><div align="right" class="text1">Encargado:</div></td>
 			<td class="text2"><?php echo $arreglo['encargado_reinscripcion']; ?></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><div align="right" class="text1">Carrera:</div></td>
+			<td class="text2">Diversificado ___ Bachillerato ___</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 		</tr>
