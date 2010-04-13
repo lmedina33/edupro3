@@ -251,7 +251,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 		</table>
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br />
 
 <?php
 
