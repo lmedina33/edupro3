@@ -97,7 +97,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 		<tr>
 			<td>&nbsp;</td>
 			<td><div align="right" class="text1">Carrera:</div></td>
-			<td class="text2">Magisterio ___ Bachillerato ___</td>
+			<td class="text2">Bachillerato en Ciencias y Letras con Orientaci&oacute;n en Computaci&oacute;n</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 		</tr>
@@ -233,8 +233,8 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 		
 		<br />
 		<div class="a_center">
-		Vo. Bo.<br /><br />
-		DIRECTOR.
+		Vo. Bo. __________________________________<br /><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIRECTOR.
 		</div>
 		<br />
 		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
