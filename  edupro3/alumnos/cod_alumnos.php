@@ -35,7 +35,7 @@ $fech = date("Y");
 $carne = $fech . $sexo;
 
 $insertar = "INSERT INTO alumno(carne, codigo_alumno, nombre_alumno, apellido, direccion, orden, registro, fecha, telefono1, edad, sexo, email, padre, madre, encargado, profesion, labora, direccion_labora, dpi, extendida, emergencia, telefono2, status, id_grado)
-o	VALUES ('$carne' , '$codigo' , '$nombre' , '$apellido' , '$direccion' , '$orden' , '$registro' , NOW() , '$telefono1' , '$edad' , '$sexo' , '$email' , '$padre' , '$madre' , '$encargado' , '$profesion' , '$laborando' , '$direccion_labora', '$dpi' , '$extendido' , '$emergencia' , '$telefono2' , 'status' , '$grado')";
+	VALUES ('$carne' , '$codigo' , '$nombre' , '$apellido' , '$direccion' , '$orden' , '$registro' , NOW() , '$telefono1' , '$edad' , '$sexo' , '$email' , '$padre' , '$madre' , '$encargado' , '$profesion' , '$laborando' , '$direccion_labora', '$dpi' , '$extendido' , '$emergencia' , '$telefono2' , 'status' , '$grado')";
 $ejecutar = mysql_query($insertar); //ejecuta el query de la tabla ALUMNOS
 
 //extrae el id
