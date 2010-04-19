@@ -103,7 +103,7 @@ require_once('../../conexion.php');
 				
 				$anio = date("Y");
 				
-				$seleccionar = "SELECT * FROM alumno a, grado g, reinscripcion r WHERE r.id_alumno = a.id_alumno AND g.id_grado = r.id_grado AND r.id_grado = '$grado' AND r.id_seccion = '$seccion' AND r.anio = '$anio' ORDER BY a.apellido ASC ";
+				$seleccionar = "SELECT * FROM alumno a, grado g, reinscripcion r WHERE r.id_alumno = a.id_alumno AND g.id_grado = r.id_grado AND r.id_grado = '$grado' AND r.id_seccion = '$seccion' AND r.anio = '$anio' ORDER BY a.apellido, a.nombre_alumno";
 				$ejecutar = mysql_query($seleccionar);
 				
 				$i = 0;

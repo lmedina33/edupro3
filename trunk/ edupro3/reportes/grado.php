@@ -5,7 +5,13 @@ require_once('../conexion.php');
 $id_alumno = $_GET['id_alumno'];
 $id_grado = $_GET['id_grado'];
 
-$seleccionar = "SELECT * FROM reinscripcion r, grado g, alumno a WHERE g.id_grado = '$id_grado' AND r.id_alumno = a.id_alumno AND r.id_alumno = '$id_alumno' AND r.id_grado = g.id_grado ";
+$seleccionar = "SELECT *
+	FROM reinscripcion r, secciones s, grado g, alumno a
+	WHERE g.id_grado = '$id_grado'
+		AND r.id_seccion = s.id_seccion
+		AND r.id_alumno = a.id_alumno
+		AND r.id_alumno = '$id_alumno'
+		AND r.id_grado = g.id_grado ";
 //$seleccionar = "SELECT * FROM alumno a, grado g WHERE a.id_alumno = '$id_alumno' AND a.id_grado = g.id_grado";
 $ejecutar = mysql_query($seleccionar); // || die (mysql_error());
 
@@ -13,6 +19,14 @@ if ($arreglo = mysql_fetch_array($ejecutar))
 {
 	
 }
+
+$sql = 'SELECT *
+	FROM secciones s, grado g
+	WHERE s.id_seccion = ' . (int) $arreglo['id_seccion'] . '
+		AND s.id_grado = g.id_grado';
+$ejecutar = mysql_query($sql);
+
+$secciones = mysql_fetch_array($ejecutar);
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -66,7 +80,7 @@ function MM_validateForm() { //v4.0
 			<td width="111">&nbsp;</td>
 			<td width="127" class="text1"><div align="right">Carn&eacute;:</div></td>
 			<td width="325" class="Estilo11"><?php echo $arreglo['carne']; ?></td>
-			<td width="73" class="text2"><div align="right"><span class="Estilo12">Fecha:</span></div></td>
+			<td width="73" class="text1"><div align="right">Fecha:</div></td>
 			<td width="146"><span class="text2"><?php echo $arreglo['fecha']; ?></span></td>
 		</tr>
 		<tr>
@@ -86,7 +100,7 @@ function MM_validateForm() { //v4.0
 		<tr>
 			<td>&nbsp;</td>
       <td><div align="right" class="text1">Grado:</div></td>
-			<td class="text2"><?php echo $arreglo['nombre'] , $arreglo['seccion']; ?></td>
+			<td class="text2"><?php echo $arreglo['nombre'] . ' ' . $arreglo['nombre_seccion']; ?></td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 		</tr>
@@ -122,6 +136,7 @@ function MM_validateForm() { //v4.0
 		
 		$id_alumno = $_GET['id_alumno'];
 		$id_grado = $_GET['id_grado'];
+		
 		$seleccionar = "SELECT *
 			FROM alumno a, grado g, cursos c, reinscripcion r
 			WHERE r.id_grado = g.id_grado
@@ -131,12 +146,12 @@ function MM_validateForm() { //v4.0
 				AND a.id_alumno = '$id_alumno'";
 		$ejecutar = mysql_query($seleccionar); //|| die (mysql_error());
 		
-		while($arreglo = mysql_fetch_assoc($ejecutar))
+		while($arreglo9 = mysql_fetch_assoc($ejecutar))
 		{
 		
 		?>
 		<tr>
-			<td class="text1"><?php echo $arreglo['nombre_curso']; ?></td>
+			<td class="text1"><?php echo $arreglo9['nombre_curso']; ?></td>
 			<?php
 			
 			$sql = 'SELECT *
@@ -148,9 +163,9 @@ function MM_validateForm() { //v4.0
 			{
 				$sql = 'SELECT *
 					FROM notas
-					WHERE id_alumno = ' . $arreglo['id_alumno'] . '
-						AND id_grado = ' . $arreglo['id_grado'] . '
-						AND id_curso = ' . $arreglo['id_curso'] . '
+					WHERE id_alumno = ' . $arreglo9['id_alumno'] . '
+						AND id_grado = ' . $arreglo9['id_grado'] . '
+						AND id_curso = ' . $arreglo9['id_curso'] . '
 						AND id_bimestre = ' . $row['id_examen'];
 				$ejecutar20 = mysql_query($sql) or die(mysql_error());
 				
@@ -183,7 +198,7 @@ function MM_validateForm() { //v4.0
 		
 		$sql = 'SELECT *
 			FROM faltas
-			WHERE id_alumno = ' . (int) $arreglo['id_alumno'] . '
+			WHERE id_alumno = ' . (int) $arreglo9['id_alumno'] . '
 			ORDER BY fecha_falta DESC
 			LIMIT 3';
 		$ejecutar = mysql_query($sql);
@@ -202,7 +217,7 @@ function MM_validateForm() { //v4.0
 		
 		?>
 		</ul>
-		o
+		
 		<br /><br />
 		<div class="a_center">
 		Vo. Bo.<br /><br />
@@ -211,8 +226,11 @@ function MM_validateForm() { //v4.0
 		<br />
 		<hr />
 		<p>Se&ntilde;or Director:</p>
-		<p>Yo $$$ por este medio hago constar que he quedado enterado de las calificaciones de mi hijo(a): $$$ que cursa el $$$ grado, seccion: $$$.
+		<p>Yo <strong><?php echo $arreglo['encargado_reinscripcion']; ?></strong> por este medio hago constar que he quedado 
+		enterado de las calificaciones de mi hijo(a): <strong><?php echo $arreglo['nombre_alumno'] . ' ' . $arreglo['apellido']; ?></strong> 
+		que cursa el <?php echo $secciones['nombre']; ?>, seccion: <?php echo $secciones['nombre_seccion']; ?>.
 		<p align="right">Fecha: <?php echo date('d m Y'); ?></p>
+		<p align="left">(f) _____________________________________________<br />Padre de familia o Encargado</p>
 				</td>
 			</tr>
 		</table>
