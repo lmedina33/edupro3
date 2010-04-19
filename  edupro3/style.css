@@ -19,6 +19,9 @@ p, div, span, input, textarea, select, a, optgroup {
 .text3 {
 	font-size: 13px;
 }
+.text_s {
+	font-size: 12px;
+}
 
 #header {
 	width: 830px;
