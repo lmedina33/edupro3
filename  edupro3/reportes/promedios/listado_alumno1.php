@@ -109,7 +109,7 @@ require_once('../../conexion.php');
 					ORDER BY promedio DESC";
 				$ejecutar = mysql_query($seleccionar);
 				
-				$ij = 0;
+				$j = 0;
 				$i = 0;
 				$k = 0;
 				while($arreglo = mysql_fetch_assoc($ejecutar)){
