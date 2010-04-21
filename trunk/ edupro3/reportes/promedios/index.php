@@ -118,7 +118,6 @@ require_once('../../conexion.php');
 </table>
 
 <script language="JavaScript" type="text/javascript">
-document.formulario.carne.focus();
 
 function buscar(url) {  
 ventana = open(url,"ventana","scrollbars=yes,status=no,toolbar=no,directories=no,menubar=no,resizable=yes,width=350,height=425")  
