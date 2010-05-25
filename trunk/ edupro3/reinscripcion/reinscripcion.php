@@ -72,20 +72,14 @@ function MM_validateForm() { //v4.0
                       <a href="../conexion.php"></a><br />
                 </label></td>
                 <td width="809"><div align="right">
-                    <table width="353" border="0">
-                      <tr>
-                        <td width="24">&nbsp;</td>
-                        <td width="24">&nbsp;</td>
-                        <td width="24">&nbsp;</td>
-                        <td width="172">&nbsp;</td>
-                        <td width="87"><div align="right"><img src="../images/iconos/chat-home.ico" class="text1" /><span class="text1 Estilo6"><a href="../index.php">Principal</a></span></div></td>
-                      </tr>
-                    </table>
-                </div>
+				<div class="content2">
+				<?php include('../menu.php'); ?>
+				
+				<div class="title"> Ingreso de Re-Inscripciï¿½n </div>
+				
+				</div>
+				</div>
                     <table width="821" align="center">
-                      <tr>
-                        <td width="806" bgcolor="#4682B4"><div class="title">Ingreso de Re-Inscripci&oacute;n </div></td>
-                      </tr>
                       <tr bgcolor="#F3F3F3">
                         <td bordercolor="#000000" bgcolor="#E0EBF3"><table width="583" border="0" align="center">
                             <tr>
@@ -283,5 +277,5 @@ document.formulario.encargado.focus();
 
 <script language="JavaScript" type="text/javascript">
 function alerta(){
-return window.confirm("¿Seguro que desea Realizar la Acción...?");}
+return window.confirm("ï¿½Seguro que desea Realizar la Acciï¿½n...?");}
 </script>

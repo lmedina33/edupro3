@@ -68,9 +68,9 @@ function MM_validateForm() { //v4.0
 
 <div id="content" class="float-holder">
 	<div id="content2">
-		<?php include('../menu.php'); ?>
+	
 		
-		<div class="title">Visualizaci&oacute;n de Notas - Grado</div>
+		<div class="title">Informaci&oacute;n de Historial de Alumno</div>
 	</div>
 	
 	<form action="../reinscripcion/reinscripcion.php" method="get" name="formulario" id="formulario" onsubmit="MM_validateForm('carne','','R');return document.MM_returnValue">

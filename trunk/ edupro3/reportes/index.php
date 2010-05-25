@@ -25,11 +25,13 @@ require_once('../conexion.php');
 	
 	<ul class="options">
 		<li><a href="alumnos/listado_alumno.php"><img src="../images/iconos/59.ico" /> Listado de Alumnos</a></li>
+		<li><a href="asistencia/listado_alumno.php"><img src="../images/iconos/152.ico" /> Control Asistencia de Alumnos</a></li>
 		<li><a href="promedios/"><img src="../images/iconos/227.ico" /> Promedios de Alumnos</a></li>
 		<li><a href="calificaciones.php"><img src="../images/iconos/30.ico" /> Tarjeta de Calificaciones</a></li>
 		<li><a href="catedraticos/listado_catedratico.php"><img src="../images/iconos/209.ico" /> Catedr&aacute;ticos con Cursos</a></li>
 		<li><a href="#"><img src="../images/iconos/144.ico" /> Certificaciones Anuales</a></li>
 		<li><a href="fgenerales.php"><img src="../images/iconos/buddy-signon.ico" /> Cuadros Generales de Calificaciones</a></li>
+		<li><a href="carta_editar.php" target="_blank"><img src="../images/iconos/22.ico"/> Carta para Edici�n de Calificaci�n </a></li>
 	</ul>
 	<br /><br />
 

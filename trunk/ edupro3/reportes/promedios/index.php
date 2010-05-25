@@ -1,5 +1,5 @@
 <?php
-
+$toproot = '../../';
 require_once('../../conexion.php');
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -24,23 +24,17 @@ require_once('../../conexion.php');
       <tr>
         <td width="8" valign="top"></td>
         <td width="809"><div align="right">
-            <table width="353" border="0">
-              <tr>
-                <td width="24">&nbsp;</td>
-                <td width="10">&nbsp;</td>
-                <td width="153"><img src="../images/iconos/84.ico" /> <a href="../index.php">Mantenimiento</a></td>
-                <td width="57">&nbsp;</td>
-                <td width="87"><div align="right"><img src="../../images/iconos/chat-home.ico" class="text1" /><span class="text1 Estilo6"><a href="../../index.php">Principal</a></span></div></td>
-              </tr>
-            </table>
-        </div>
+		<div id="content2">
+		<?php include('../../menu.php'); ?>
+		</div>
+		</div>
             <table width="821" align="center">
               <tr>
                 <td width="806" bgcolor="#4682B4"><div class="title"> Reportes de Alumnos </div></td>
               </tr>
               <tr bgcolor="#F3F3F3">
                 <td bordercolor="#000000" bgcolor="#F3F3F3"><br />
-								<form id="form1" name="form1" method="get" action="listado_alumno1.php">
+								<form action="listado_alumno1.php" method="get" name="form1" target="_blank" id="form1">
                   <table width="776" border="0" cellpadding="5">
                     <tr>
                       <td class="text1 a_right">Grado y secci&oacute;n:</td>
@@ -106,12 +100,12 @@ require_once('../../conexion.php');
 					<td colspan="2" class="text1 a_center"><input type="submit" name="Submit" value="Ver Listado..." /></td>
 				</tr>
                   </table>
-									</form>
+				  </form>
 </td>
               </tr>
               
             </table>
-				</td>
+		  </td>
       </tr>
     </table></td>
   </tr>

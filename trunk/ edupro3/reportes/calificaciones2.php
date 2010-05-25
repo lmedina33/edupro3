@@ -1,6 +1,15 @@
 <?php
 
 require_once('../conexion.php');
+define('XFS', '../');
+
+require_once(XFS . 'pdf/pdf.php');
+
+$pdf = new _pdf();
+$pdf->cp->selectFont(XFS . 'pdf/helvetica.afm');
+
+$page_count = 0;
+$coord_sum = 0;
 
 $id_seccion = $_POST['seccion'];
 
@@ -12,254 +21,196 @@ $ejecutar = mysql_query($sql);
 
 $secciones = mysql_fetch_array($ejecutar);
 
-$seleccionar = 'SELECT * FROM reinscripcion r, grado g, alumno a
+$seleccionar = 'SELECT * FROM reinscripcion r, secciones s, grado g, alumno a
 	WHERE r.id_grado = ' . $secciones['id_grado'] . '
 		AND r.id_seccion = ' . $secciones['id_seccion'] . '
 		AND r.anio = ' . date('Y') . '
+		AND r.id_seccion = s.id_seccion
 		AND r.id_alumno = a.id_alumno
 		AND r.id_grado = g.id_grado';
 $ejecutar = mysql_query($seleccionar); // || die (mysql_error());
 
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Tarjeta de calificaciones</title>
-<link rel="stylesheet" type="text/css" href="../style.css"  />
-
-</head>
-
-<body>
-
-<div id="content" class="float-holder">
-
-<?php
-
+$i = 0;
 while ($arreglo = mysql_fetch_assoc($ejecutar))
 {
-
-?>
-
-	<br />
-	<table width="100%" border="0">
-	<tr>
-		<td width="2%">&nbsp;</td>
-		<td width="15%"><img src="../images/logo.jpg" width="110" height="117" /></td>
-		<td>
-		<p align="center">
-		ESCUELA NORMAL RURAL No. 5<br />
-		&quot;Prof. Julio Edmundo Rosado Pinelo&quot;<br />
-		Santa Elena, Flores, Pet&eacute;n. Tel. 79260549<br />
-		www.enormal5.com<br /><br />
-		&quot;SIMIENTE DE CULTURA EN PET&Eacute;N&quot;<br /><br />
-		<u><strong>FICHA DE RENDIMIENTO ESCOLAR</strong></u>
-		</p>
-		</td>
-	</tr>
-	</table>
+	if ($i) $pdf->new_page();
 	
-	<table width="100%" border="0">
-		<tr>
-			<td width="111">&nbsp;</td>
-			<td width="127" class="text1"><div align="right">Carn&eacute;:</div></td>
-			<td width="325" class="Estilo11"><?php echo $arreglo['carne']; ?></td>
-			<td width="73" class="text1"><div align="right">Fecha:</div></td>
-			<td width="146"><span class="text2"><?php echo $arreglo['fecha']; ?></span></td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td><div align="right" class="text1">Nombres y Apellidos: </div></td>
-			<td class="text2"><?php echo $arreglo['nombre_alumno']; ?><?php echo " , " ?><?php echo $arreglo['apellido']; ?></td>
-			<td><div align="right" class="text1">Telefono:</div></td>
-			<td class="text2"><?php echo $arreglo['telefono1']; ?></td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td><div align="right" class="text1">Email: </div></td>
-			<td class="text2"><?php echo $arreglo['email']; ?></td>
-			<td><div align="right" class="text1">C&oacute;digo: </div></td>
-			<td class="text2"><?php echo $arreglo['codigo_alumno']; ?></td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-      <td><div align="right" class="text1">Grado:</div></td>
-			<td class="text2"><?php echo $arreglo['nombre'] , $arreglo['seccion']; ?></td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td><div align="right" class="text1">Encargado:</div></td>
-			<td class="text2"><?php echo $arreglo['encargado_reinscripcion']; ?></td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td><div align="right" class="text1">Carrera:</div></td>
-			<td class="text2">Bachillerato en Ciencias y Letras con Orientaci&oacute;n en Computaci&oacute;n</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-	</table>
+	$pdf->cp->addJpegFromFile('../images/logo.jpg', 40, $pdf->cp->cy(80), 60);
 	
-	<br />
-	<table width="95%" border="1" align="center" style="border-collapse:collapse">
-		<tr>
-			<td class="a_center Estilo6" width="25%">Curso</td>
-			<?php
-			
-			$sql = 'SELECT *
-				FROM examenes
-				WHERE examen NOT LIKE \'%Recup%\'
-				ORDER BY id_examen';
-			$ejecutar2 = mysql_query($sql);
-			
-			while ($row = mysql_fetch_array($ejecutar2))
-			{
-				echo '<td class="a_center Estilo6" width="15%">' . $row['examen'] . '</td>';
-			}
-			
-			?>
-		</tr>
-		
-		<?php
-		
-		$seleccionar = "SELECT *
-			FROM cursos c, reinscripcion r
-			WHERE r.id_grado = " . $secciones['id_grado'] . '
-				AND r.id_seccion = ' . $secciones['id_seccion'] . '
-				AND r.anio = ' . date('Y') . '
-				
-				AND r.id_grado = c.id_grado
-				AND r.id_alumno = ' . (int) $arreglo['id_alumno'];
-		$ejecutar2 = mysql_query($seleccionar); //|| die (mysql_error());
-		
-		$note_sum = array();
-		$note_quant = array();
-		while($arreglo2 = mysql_fetch_assoc($ejecutar2))
-		{
-		
-		?>
-		<tr>
-			<td class="text1"><?php echo $arreglo2['nombre_curso']; ?></td>
-			<?php
-			
-			$sql = 'SELECT *
-				FROM examenes
-				WHERE examen NOT LIKE \'%Recup%\'
-				ORDER BY id_examen';
-			$ejecutar3 = mysql_query($sql);
-			
-			$total_examenes = 0;
-			while ($row = mysql_fetch_array($ejecutar3))
-			{
-				$sql = 'SELECT *
-					FROM notas
-					WHERE id_alumno = ' . $arreglo['id_alumno'] . '
-						AND id_grado = ' . $arreglo['id_grado'] . '
-						AND id_curso = ' . $arreglo2['id_curso'] . '
-						AND id_bimestre = ' . $row['id_examen'];
-				$ejecutar4 = mysql_query($sql) or die(mysql_error());
-				$notas = mysql_fetch_assoc($ejecutar4);
-				
-				echo '<td class="a_center Estilo11" width="15%">' . ($notas['nota'] ? $notas['nota'] : '&nbsp;') . '</td>';
-				$total_examenes++;
-				
-				if ($notas['nota'])
-				{
-					$note_sum[$row['id_examen']] += $notas['nota'];
-					$note_quant[$row['id_examen']]++;
-				}
-			}
-			
-			?>
-		</tr>
-		<tr>
-		<?php
-		}
-		
-		echo '<td align="right"><strong>Promedio</strong></td>';
-		
-		foreach ($note_sum as $note_id => $note_each)
-		{
-		?>
-		<td class="a_center Estilo11"><strong><?php echo number_format(($note_each / $note_quant[$note_id]), 2); ?></strong></td>
-		<?php
-		}
-		
-		for ($i = 0; $i < ($total_examenes - count($note_sum)); $i++)
-		{
-			echo '<td>&nbsp;</td>';
-		}
-		
-		?>
-		</tr>
-		</table>
-		
-		<br />
-		<table width="95%" border="0" align="center" style="border-collapse:collapse">
-			<tr>
-				<td>
-				<strong>Observaciones:</strong><br /><br />
-				De 0 a 59 puntos, reprobado.<br />
-				De 60 a 100 puntos, aprobado.<br /><br />
-				
-				<strong>Faltas acad&eacute;micas:</strong>
-		<ul>
-		<?php
+	$pdf->text(100, $pdf->top(25), 'INSTITUTO NACIONAL DE EDUCACION BASICA', 8, 'center', $pdf->page_width(125));
+	$pdf->text(100, $pdf->top(11), 'ESCUELA NORMAL RURAL No. 5', 8, 'center', $pdf->page_width(125));
+	$pdf->text(100, $pdf->top(11), '&quot;Prof. Julio Edmundo Rosado Pinelo&quot;', 8, 'center', $pdf->page_width(125));
+	$pdf->text(100, $pdf->top(11), 'Santa Elena, Flores, Pet&eacute;n. Tel. 79262393', 8, 'center', $pdf->page_width(125));
+	$pdf->text(100, $pdf->top(11), '&quot;SIMIENTE DE CULTURA EN PET&Eacute;N&quot;', 8, 'center', $pdf->page_width(125));
+	$pdf->text(100, $pdf->top(20), 'FICHA DE RENDIMIENTO ESCOLAR', 11, 'center', $pdf->page_width(125));
+	
+	$datos = array(
+		array(
+			array('text' => 'Carn&eacute;:', 'align' => 'right'),
+			array('text' => $arreglo['carne'], 'align' => 'left'),
+			array('text' => 'Fecha:', 'align' => 'right'),
+			array('text' => $arreglo['fecha'], 'align' => 'left'),
+		),
+		array(
+			array('text' => 'Nombres y Apellidos:', 'align' => 'right'),
+			array('text' => $arreglo['nombre_alumno'] . ', ' . $arreglo['apellido'], 'align' => 'left'),
+			array('text' => 'Telefono:', 'align' => 'right'),
+			array('text' => $arreglo['telefono1'], 'align' => 'left'),
+		),
+		array(
+			array('text' => 'Email:', 'align' => 'right'),
+			array('text' => $arreglo['email'], 'align' => 'left'),
+			array('text' => 'C&oacute;digo:', 'align' => 'right'),
+			array('text' => $arreglo['codigo_alumno'], 'align' => 'left'),
+		),
+		array(
+			array('text' => 'Grado:', 'align' => 'right'),
+			array('text' => $arreglo['nombre'] . ' ' . $arreglo['nombre_seccion'], 'align' => 'left'),
+			array('text' => '', 'align' => 'right'),
+			array('text' => '', 'align' => 'left'),
+		),
+		array(
+			array('text' => 'Encargado:', 'align' => 'right'),
+			array('text' => $arreglo['encargado_reinscripcion'], 'align' => 'left'),
+			array('text' => '', 'align' => 'right'),
+			array('text' => '', 'align' => 'left'),
+		)
+	);
+	
+	$pdf->multitable($datos, 35, 105, 5, 9, 0);
+	
+	$infot = array(
+		array(array('text' => 'Curso', 'align' => 'center'))
+	);
+	
+	$sql = 'SELECT *
+		FROM examenes
+		WHERE examen NOT LIKE \'%Recup%\'
+		ORDER BY id_examen';
+	$ejecutar2 = mysql_query($sql);
+	
+	while ($row = mysql_fetch_array($ejecutar2))
+	{
+		$infot[0][] = array('text' => $row['examen'], 'align' => 'center', 'width' => 75);
+	}
+	
+	$sql = "SELECT *
+		FROM cursos c, reinscripcion r
+		WHERE r.id_grado = " . $secciones['id_grado'] . '
+			AND r.id_seccion = ' . $secciones['id_seccion'] . '
+			AND r.anio = ' . date('Y') . '
+			AND r.id_grado = c.id_grado
+			AND r.id_alumno = ' . (int) $arreglo['id_alumno'];
+	$ejecutar2 = mysql_query($sql);
+	
+	$note_sum = array();
+	$note_quant = array();
+	$j = 1;
+	while($arreglo2 = mysql_fetch_assoc($ejecutar2))
+	{
+		$infot[$j] = array(array('text' => $arreglo2['nombre_curso'], 'align' => 'left'));
 		
 		$sql = 'SELECT *
-			FROM faltas
-			WHERE id_alumno = ' . (int) $arreglo['id_alumno'] . '
-			ORDER BY fecha_falta DESC
-			LIMIT 3';
-		$ejecutar6 = mysql_query($sql);
+			FROM examenes
+			WHERE examen NOT LIKE \'%Recup%\'
+			ORDER BY id_examen';
+		$ejecutar3 = mysql_query($sql);
 		
-		$i = 0;
-		while ($row = mysql_fetch_array($ejecutar6))
+		$total_examenes = 0;
+		while ($row = mysql_fetch_array($ejecutar3))
 		{
-			echo '<li>' . $row['falta'] . '</li>';
-			$i++;
+			$sql = 'SELECT *
+				FROM notas
+				WHERE id_alumno = ' . $arreglo['id_alumno'] . '
+					AND id_grado = ' . $arreglo['id_grado'] . '
+					AND id_curso = ' . $arreglo2['id_curso'] . '
+					AND id_bimestre = ' . $row['id_examen'];
+			$ejecutar4 = mysql_query($sql);
+			$notas = mysql_fetch_assoc($ejecutar4);
+			
+			$infot[$j][] = array('text' => $notas['nota'], 'align' => 'center');
+			$total_examenes++;
+			
+			if ($notas['nota'])
+			{
+				if (!isset($note_sum[$row['id_examen']]))
+				{
+					$note_sum[$row['id_examen']] = 0;
+				}
+				
+				if (!isset($note_quant[$row['id_examen']]))
+				{
+					$note_quant[$row['id_examen']] = 0;
+				}
+				
+				$note_sum[$row['id_examen']] += $notas['nota'];
+				$note_quant[$row['id_examen']]++;
+			}
 		}
 		
-		if (!$i)
-		{
-			echo '<li>No hay faltas.</li>';
-		}
 		
-		?>
-		</ul>
-		
-		<br />
-		<div class="a_center">
-		Vo. Bo. __________________________________<br /><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIRECTOR.
-		</div>
-		<br />
-		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-		<p>Se&ntilde;or Director:</p>
-		<p>Yo <strong><?php echo $arreglo['encargado_reinscripcion']; ?></strong> por este medio hago constar que he quedado 
-		enterado de las calificaciones de mi hijo(a): <strong><?php echo $arreglo['nombre_alumno'] . ' ' . $arreglo['apellido']; ?></strong> 
-		que cursa el <?php echo $secciones['nombre']; ?>, seccion: <?php echo $secciones['nombre_seccion']; ?>.
-		<p align="right">Fecha: <?php echo date('d m Y'); ?></p>
-		<p align="left">(f) _____________________________________________<br />Padre de familia o Encargado</p>
-		
-		<hr />
-				</td>
-			</tr>
-		</table>
+		$j++;
+	}
+	
+	$infot[$j] = array(array('text' => 'Promedio', 'align' => 'right'));
+	
+	foreach ($note_sum as $note_id => $note_each)
+	{
+		$infot[$j][] = array('text' => number_format(($note_each / $note_quant[$note_id]), 2), 'align' => 'center');
+	}
+	
+	for ($i = 0; $i < ($total_examenes - count($note_sum)); $i++)
+	{
+		$infot[$j][] = array('text' => '', 'align' => 'center');
+	}
+	
+	$pdf->multitable($infot, 35, $pdf->top() + 20, 5, 9, 1, array('last_height' => $pdf->top()));
+	
+	$pdf->text(30, $pdf->top(25), 'Observaciones:', 8);
+	$pdf->text(30, $pdf->top(10), 'De 0 a 59 puntos, reprobado.', 7);
+	$pdf->text(30, $pdf->top(10), 'De 60 a 100 puntos, aprobado.', 7);
 
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-<br /><br /><br /><br /><br />
+	$pdf->text(30, $pdf->top(15), 'Faltas acad&eacute;micas:', 9);
 
-<?php
+	$sql = 'SELECT *
+		FROM faltas
+		WHERE id_alumno = ' . (int) $arreglo['id_alumno'] . '
+		ORDER BY fecha_falta DESC
+		LIMIT 3';
+	$ejecutar6 = mysql_query($sql);
+	
+	$pdf->text(30, $pdf->top(10), '', 5);
+	
+	$i2 = 0;
+	while ($row = mysql_fetch_array($ejecutar6))
+	{
+		$pdf->text(30, $pdf->top(10), $row['falta'], 7);
+		$i2++;
+	}
 
+	if (!$i2)
+	{
+		$pdf->text(30, $pdf->top(10), 'No hay faltas.', 7);
+	}
+	
+	$pdf->text(100, $pdf->top(25), 'Vo. Bo.', 9);
+	$pdf->text(100, $pdf->top(15), 'DIRECTOR', 9);
+	$pdf->text(30, $pdf->top(15), '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -', 9);
+	
+	$pdf->text(30, $pdf->top(15), 'Se&ntilde;or Director:', 9);
+	
+	$pdf->text(30, $pdf->top(15), 'Yo '. $arreglo['encargado_reinscripcion'] .' por este medio hago constar que he quedado enterado de las calificaciones de mi hijo(a):', 9);
+	$pdf->text(30, $pdf->top(15), $arreglo['nombre_alumno'] . ' ' . $arreglo['apellido'].' que cursa el '. $secciones['nombre'].', seccion: '. $secciones['nombre_seccion'].'.', 9);
+	
+	$pdf->text(50, $pdf->top(25), '(f) _____________________________________________', 9);
+	$pdf->text(50, $pdf->top(15), 'Padre de familia o Encargado', 9);
+	$pdf->text(50, $pdf->top(15), 'Fecha de impresi&oacute;n: '. date('d m Y'), 9);
+	
+	$i++;
 }
+
+$pdf->cp->ezOutput();
+$pdf->cp->stream();
+die();
+
 ?>
-
-</div>
-</div>
-
-</body>
-</html>
