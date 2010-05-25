@@ -5,6 +5,8 @@ require_once('../../conexion.php');
 $id_alumno = $_POST['id_alumno'];
 $carne = $_POST['carnet'];
 
+$codigo_alumno = $_POST['codigo_alumno'];
+
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
 
@@ -19,7 +21,7 @@ $grado = $_POST['grado'];
 $seccion = $_POST['seccion'];
 
 $modificar = "UPDATE alumno
-	SET nombre_alumno = '$nombre', apellido = '$apellido', direccion = '$direccion', telefono1 = '$telefono', email = '$email', padre = '$padre', madre = '$madre', id_grado = '$grado'
+	SET codigo_alumno = '$codigo_alumno' , nombre_alumno = '$nombre', apellido = '$apellido', direccion = '$direccion', telefono1 = '$telefono', email = '$email', padre = '$padre', madre = '$madre', id_grado = '$grado'
 	WHERE id_alumno ='$id_alumno' AND carne = '$carne'";
 $ejecutar = mysql_query($modificar);
 
