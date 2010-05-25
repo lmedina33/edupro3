@@ -139,8 +139,10 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 		}
 	}
 	
+	$text_numeros = ($fill) ? number_format(round(($sum / $fill), 2), 2) : '';
+	
 	$numeros[] = array(
-		'text' => number_format(round(($sum / $fill), 2), 2),
+		'text' => $text_numeros,
 		'align' => 'center'
 	);
 	
