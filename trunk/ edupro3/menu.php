@@ -21,7 +21,7 @@ if (!isset($toproot))
 		<li><a onclick="return buscar('<?php echo $toproot; ?>aux_search/search.php'); " href="#">B&uacute;squeda de alumno</a></li>
 		<?php
 		
-		if (isset($_SESSION['userlog']) && ($_SESSION['userlog'] == 'Director'))
+		if (isset($_SESSION['userlog']) && ($_SESSION['userlog'] == 'Director' || $_SESSION['userlog'] == 'Subdirector'))
 		{
 		?>
 		<li><a href="<?php echo $toproot; ?>ingreso_index.php" title="Ingreso de datos">Ingreso de datos</a></li>
