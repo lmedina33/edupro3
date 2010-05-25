@@ -1,15 +1,15 @@
 <?php
-$toproot = '../../';
-require_once('../../conexion.php');
+
+require_once('../conexion.php');
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Listado de Alumnos</title>
-<link rel="stylesheet" type="text/css" href="../../style.css"  />
+<title>Ingreso de Codigos para Alumnos</title>
+<link rel="stylesheet" type="text/css" href="../style.css"  />
 
-<script src="../../jquery.js" type="text/javascript"></script>
+<script src="../jquery.js" type="text/javascript"></script>
 
 </head>
 
@@ -19,31 +19,31 @@ require_once('../../conexion.php');
     <td width="830"><table width="833" border="0" align="center" bgcolor="#FFFFFF">
       <tr>
         <td valign="top">&nbsp;</td>
-        <td><img src="../../images/fond1.jpg" width="830" height="150" /></td>
+        <td><img src="../images/fond1.jpg" width="830" height="150" /></td>
       </tr>
       <tr>
-        <td width="8" valign="top"><label>
-              
-              <a href="../../conexion.php"></a><br />
+        <td width="8" valign="top"><label><br />
+              <br />
+              <br />
+              <a href="../conexion.php"></a><br />
         </label></td>
         <td width="809"><div align="right">
-            <div id="content2">
-              <?php include('../../menu.php'); ?>
-              <div class="title">Reportes de Alumnos</div>
-            </div>
-        </div>
+		<div id="content2">
+		<?php include('../menu.php'); ?>
+		<div class="title"> Ingreso de Codigos de Alumnos </div>
+		</div>
+		</div>
             <table width="821" align="center">
-              
               <tr bgcolor="#F3F3F3">
-                <td width="806" bordercolor="#000000" bgcolor="#F3F3F3"><br />
+                <td bordercolor="#000000" bgcolor="#F3F3F3"><br />
                   <table width="776" border="0">
                     <tr>
                       <td width="58">&nbsp;</td>
-                      <td width="669"><form action="listado_alumno1.php" method="get" name="form1" target="_blank" id="form1">
+                      <td width="669"><form id="form1" name="form1" method="get" action="codigos.php">
                         <select id="grado" name="grado">
 												<?php
                         
-                        $seleccionar = "SELECT * FROM grado";
+                        $seleccionar = "SELECT * FROM grado WHERE id_grado = 1";
                         $ejecutar = mysql_query($seleccionar);
                         
                         //echo '<option value="0">Seleccione </option>';
@@ -111,7 +111,7 @@ $(function() {
 	$('#grado').change(function() {
 		$.ajax({
 			type: "POST",
-			url: "../../actseccion.php",
+			url: "../actseccion.php",
 			data: "grado=" + this.value,
 			success: function(msg) {
 				$('#seccion').html(msg);
@@ -119,5 +119,6 @@ $(function() {
  });
 	});
 });
+
 
 </script>

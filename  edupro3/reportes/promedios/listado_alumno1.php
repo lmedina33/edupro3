@@ -17,18 +17,7 @@ require_once('../../conexion.php');
     <td width="830"><table width="833" border="0" align="center" bgcolor="#FFFFFF">
       <tr>
         <td width="8" valign="top">&nbsp;</td>
-        <td width="809"><div align="right">
-            <table width="353" border="0">
-              <tr>
-                <td width="24">&nbsp;</td>
-                <td width="10">&nbsp;</td>
-                <td width="153"><img src="../../images/iconos/73.ico" /><a href="../index.php"> Sub Menu </a></td>
-                <td width="57">&nbsp;</td>
-                <td width="87"><div align="right"><img src="../../images/iconos/chat-home.ico" class="text1" /><span class="text1 Estilo6"><a href="../../index.php">Principal</a></span></div></td>
-              </tr>
-            </table>
-        </div>
-            <table width="821" align="center">
+        <td width="809"><table width="821" align="center">
               <tr>
                 <td width="806" bgcolor="#4682B4"><div class="title"> Reportes de Alumnos </div></td>
               </tr>
@@ -81,7 +70,7 @@ require_once('../../conexion.php');
 													<td width="33%" class="a_center text3">Promedio</td>
 												</tr>
 											</table>
-										</td>
+					  </td>
                   </tr>
                 </table></td>
               </tr>
@@ -144,19 +133,16 @@ require_once('../../conexion.php');
 								}
 								
 								?>
-								</td>
+				</td>
               </tr>
           </table>
 					
 					<br />
 					Total de alumnos: <?php echo ($i + $j); ?><br /><br />
-					Total de alumnos aprobados: <?php echo $i; ?><br />
-					Total de alumnos reprobados: <?php echo $j; ?><br /><br />
-					0 a 59 - reprobado<br />
-					60 a 100 - aprobado
-					<br /><br /><div class="a_center">_______________________________________________<br /><br />Vo.Bo. Director</div>
+					<br />
+					<div class="a_center">_______________________________________________<br /><br />Vo.Bo. Director</div>
 					<br /><br />
-					</td>
+		  </td>
       </tr>
     </table></td>
   </tr>

@@ -21,18 +21,7 @@ require_once('../../conexion.php');
               <br />
               <a href="../../conexion.php"></a><br />
         </label></td>
-        <td width="809"><div align="right">
-            <table width="353" border="0">
-              <tr>
-                <td width="24">&nbsp;</td>
-                <td width="10">&nbsp;</td>
-                <td width="153"><img src="../../images/iconos/73.ico" /><a href="../index.php"> Sub Menu </a></td>
-                <td width="57">&nbsp;</td>
-                <td width="87"><div align="right"><img src="../../images/iconos/chat-home.ico" class="text1" /><span class="text1 Estilo6"><a href="../../index.php">Principal</a></span></div></td>
-              </tr>
-            </table>
-        </div>
-            <table width="821" align="center">
+        <td width="809"><table width="821" align="center">
               <tr>
                 <td width="806" bgcolor="#4682B4"><div class="title"> Reportes de Alumnos </div></td>
               </tr>
@@ -93,7 +82,7 @@ require_once('../../conexion.php');
                     <td width="430"><?php echo $arreglo['apellido']; ?><?php echo " , " ?><?php echo $arreglo['nombre_alumno']; ?></td>
                     <td width="208">
 											_________________________
-										</td>
+					  </td>
                   </tr>
                 </table></td>
               </tr>
@@ -106,7 +95,7 @@ require_once('../../conexion.php');
 					Total de alumnos: <?php echo $i; ?>
 					<br /><br /><div class="a_center">_______________________________________________<br /><br />Vo.Bo. Director</div>
 					<br /><br />
-					</td>
+		  </td>
       </tr>
     </table></td>
   </tr>

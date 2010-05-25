@@ -10,11 +10,11 @@ encabezado('Ingreso de Notas');
 	<div id="content2">
 	    <?php include('../menu.php'); ?>
 		
-		<div class="title">Tarjeta de Calificaciones</div>
+		<div class="title">Cuadros Generales de Calificaciones</div>
 	</div>
 	
 	<div class="blue">
-		<form action="calificaciones2.php" method="post" name="formulario" id="formulario" target="_blank">
+		<form action="fgenerales2.php" method="post" name="formulario" id="formulario" target="_blank">
 		
 		<table width="731" border="0" align="center">
 			<tr>
@@ -33,6 +33,31 @@ encabezado('Ingreso de Notas');
 					while ($arreglo = mysql_fetch_array($ejecutar))
 					{
 						echo '<option value="' . $arreglo['id_seccion'] . '" >' . $arreglo['nombre']. ' - secci&oacute;n: ' .$arreglo['nombre_seccion'] .'</option>';
+					}
+					
+					echo '</select>';
+					
+					?>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td class="text1 a_right">Tiempo de Examen:</td>
+				<td>
+					<?php
+					
+					$seleccionar = "SELECT * FROM examenes";
+					$ejecutar = mysql_query($seleccionar);
+					
+					echo '<select name="examen">';
+					
+					// por cada registro encontrado en la tabla me genera un <option>
+					while ($arreglo = mysql_fetch_array($ejecutar))
+					{
+						echo '<option value="' . $arreglo['id_examen'] . '" >' . $arreglo['examen'] . '</option>';
 					}
 					
 					echo '</select>';

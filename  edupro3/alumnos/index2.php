@@ -7,54 +7,9 @@ require_once('../conexion.php');
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Documento sin t&iacute;tulo</title>
-<style type="text/css">
-.text2{
-font-family:tahoma;
-color:#000000;
-font-size:12px;
-}
 
-.text1{
-font-family:Tahoma;
-color:#000000;
-font-size:13px;
-}
-</style>
-<style type="text/css">
-<!--
-input{
--moz-border-radius: 5px;
-background-color : #eaf9ff;
-border : 1px solid #000000;
-font-family : "Tahoma", Tahoma, monospace;
-font-size : 12px;
-padding-left : 7px;
-padding-right : 7px;
-}
+<link rel="stylesheet" type="text/css" href="../style.css" />
 
-body {
-	background-color: #5EC3F9;
-}
-.Estilo5 {color: #FFFFFF}
-.Estilo6 {color: #990000}
-a:link {
-	color: #000000;
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-	color: #000000;
-}
-a:hover {
-	text-decoration: underline;
-	color: #990000;
-}
-a:active {
-	text-decoration: none;
-	color: #000000;
-}
-.Estilo8 {color:#000000}
-</style>
 
 <script type="text/JavaScript">
 <!--
@@ -101,25 +56,21 @@ function MM_validateForm() { //v4.0
                 <a href="../conexion.php"></a><br />
           </label></td>
           <td width="813"><div align="right">
-              <table width="353" border="0">
-                <tr>
-                  <td width="24">&nbsp;</td>
-                  <td width="24">&nbsp;</td>
-                  <td width="24">&nbsp;</td>
-                  <td width="172">&nbsp;</td>
-                  <td width="87"><div align="right"><img src="../images/iconos/chat-home.ico" class="text1" /><span class="text1 Estilo6"><a href="../index.php">Principal</a></span></div></td>
-                </tr>
-              </table>
-          </div>
+		  <div id="content2">
+		<?php include('../menu.php'); ?>
+		
+		<div class="title">Alumno Ingresado con ï¿½xito</div>
+	</div>
+
+		  </div>
               <table width="815" border="0">
-                <tr>
-                  <td bgcolor="#4682B4"><div align="center"><span class="Estilo5">Alumno Ingresado Exitosamente... </span></div></td>
-                </tr>
+                
                 <tr>
                   <td bgcolor="#E0EBF3" class="text1"><br />
                       <span class="Estilo6">Alumno Ingresado con &Eacute;xito...</span><br />
                       <br />
-                    en la Secci&oacute;n de Visualizaci&oacute;n, podra ver el Documento de Compromiso de Estudio para su Impresi&oacute;n. <br />
+					  <span class="text1">
+                    en la Secci&oacute;n de Visualizaci&oacute;n, podra ver el Documento de Compromiso de Estudio para su Impresi&oacute;n.</span> <br />
                     <br />
                     <table width="808" border="0">
                       <tr>
@@ -157,5 +108,5 @@ document.formulario.nombre.focus();
 
 <script language="JavaScript" type="text/javascript">
 function alerta(){
-return window.confirm("¿Seguro que desea Realizar la Acción...?");}
+return window.confirm("ï¿½Seguro que desea Realizar la Acciï¿½n...?");}
 </script>

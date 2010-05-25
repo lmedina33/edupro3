@@ -27,18 +27,7 @@ require_once('../../conexion.php');
               <br />
               <a href="../../conexion.php"></a><br />
         </label></td>
-        <td width="809"><div align="right">
-            <table width="353" border="0">
-              <tr>
-                <td width="24">&nbsp;</td>
-                <td width="10">&nbsp;</td>
-                <td width="153"><img src="../images/iconos/84.ico" /> <a href="../index.php">Mantenimiento</a></td>
-                <td width="57">&nbsp;</td>
-                <td width="87"><div align="right"><img src="../../images/iconos/chat-home.ico" class="text1" /><span class="text1 Estilo6"><a href="../../index.php">Principal</a></span></div></td>
-              </tr>
-            </table>
-        </div>
-            <table width="821" align="center">
+        <td width="809"><table width="821" align="center">
               <tr>
                 <td width="806" bgcolor="#4682B4"><div class="title"> Reportes de Catedratico con Cursos </div></td>
               </tr>

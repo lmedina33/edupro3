@@ -1,5 +1,5 @@
 <?php
-
+$toproot = '../../';
 require_once('../../conexion.php');
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -28,16 +28,10 @@ require_once('../../conexion.php');
               <a href="../../conexion.php"></a><br />
         </label></td>
         <td width="809"><div align="right">
-            <table width="353" border="0">
-              <tr>
-                <td width="24">&nbsp;</td>
-                <td width="10">&nbsp;</td>
-                <td width="153"><img src="../images/iconos/84.ico" /> <a href="../index.php">Mantenimiento</a></td>
-                <td width="57">&nbsp;</td>
-                <td width="87"><div align="right"><img src="../../images/iconos/chat-home.ico" class="text1" /><span class="text1 Estilo6"><a href="../../index.php">Principal</a></span></div></td>
-              </tr>
-            </table>
-        </div>
+		<div id="content2">
+		<?php include('../../menu.php'); ?>
+		</div>
+		</div>
             <table width="821" align="center">
               <tr>
                 <td width="806" bgcolor="#4682B4"><div class="title"> Reportes de Catedratico con Cursos </div></td>
@@ -47,7 +41,7 @@ require_once('../../conexion.php');
                   <table width="776" border="0">
                     <tr>
                       <td width="58">&nbsp;</td>
-                      <td width="669"><form id="form1" name="form1" method="get" action="listado_catedratico1.php">
+                      <td width="669"><form action="listado_catedratico1.php" method="get" name="form1" target="_blank" id="form1">
                         <select id="grado" name="grado">
 												<?php
                         

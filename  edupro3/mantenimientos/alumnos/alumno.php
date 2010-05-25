@@ -93,6 +93,18 @@ $reins = mysql_fetch_array($ejecutar2);
                       <tr>
                         <td class="text1">&nbsp;</td>
                         <td class="text1">&nbsp;</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="text1">&nbsp;</td>
+                        <td class="text1"><div align="right">Codigo del Alumno: </div></td>
+                        <td><label>
+                          <input  name="codigo_alumno" type="text" id="codigo_alumno" value="<?php echo $arreglo['codigo_alumno']; ?>" autocomplete="off" />
+                        </label></td>
+                      </tr>
+                      <tr>
+                        <td class="text1">&nbsp;</td>
+                        <td class="text1">&nbsp;</td>
                         <td><label></label></td>
                       </tr>
                       <tr>

@@ -21,18 +21,7 @@ require_once('../../conexion.php');
               <br />
               <a href="../../conexion.php"></a><br />
         </label></td>
-        <td width="809"><div align="right">
-            <table width="353" border="0">
-              <tr>
-                <td width="24">&nbsp;</td>
-                <td width="10">&nbsp;</td>
-                <td width="153"><img src="../../images/iconos/73.ico" /><a href="../index.php"> Sub Menu </a></td>
-                <td width="57">&nbsp;</td>
-                <td width="87"><div align="right"><img src="../../images/iconos/chat-home.ico" class="text1" /><span class="text1 Estilo6"><a href="../../index.php">Principal</a></span></div></td>
-              </tr>
-            </table>
-        </div>
-            <table width="821" align="center">
+        <td width="809"><table width="821" align="center">
               <tr>
                 <td width="806" bgcolor="#4682B4"><div class="title"> Reportes de Alumnos </div></td>
               </tr>
@@ -66,9 +55,9 @@ require_once('../../conexion.php');
 				<table width="100%">
 												<tr>
 													<td width="100">Trimestres:</td>
-													<td align="left">1er _____ 2do _____ 3ro _____ 4to _____</td>
+													<td align="left">1er _____ 2do _____ 3ro _____</td>
 												</tr>
-											</table>
+						</table>
 				
 				</td>
                       <td width="23"><div align="center"><img src="../../images/logo.jpg" width="110" height="117" /></div></td>
@@ -91,7 +80,7 @@ require_once('../../conexion.php');
 													<td width="33%" class="a_center text3">TOTAL</td>
 												</tr>
 											</table>
-										</td>
+					  </td>
                   </tr>
                 </table></td>
               </tr>
@@ -103,7 +92,7 @@ require_once('../../conexion.php');
 				
 				$anio = date("Y");
 				
-				$seleccionar = "SELECT * FROM alumno a, grado g, reinscripcion r WHERE r.id_alumno = a.id_alumno AND g.id_grado = r.id_grado AND r.id_grado = '$grado' AND r.id_seccion = '$seccion' AND r.anio = '$anio' ORDER BY a.apellido, a.nombre_alumno";
+				$seleccionar = "SELECT * FROM alumno a, grado g, reinscripcion r WHERE r.id_alumno = a.id_alumno AND g.id_grado = r.id_grado AND r.id_grado = '$grado' AND r.id_seccion = '$seccion' AND r.anio = '$anio' ORDER BY a.apellido, a.nombre_alumno ASC ";
 				$ejecutar = mysql_query($seleccionar);
 				
 				$i = 0;
@@ -124,7 +113,7 @@ require_once('../../conexion.php');
 													<td width="33%">&nbsp;</td>
 												</tr>
 											</table>
-										</td>
+					  </td>
                   </tr>
                 </table></td>
               </tr>
@@ -137,7 +126,7 @@ require_once('../../conexion.php');
 					Total de alumnos: <?php echo $i; ?>
 					<br /><br /><div class="a_center">_______________________________________________<br /><br />Firma de catedr&aacute;tico</div>
 					<br /><br />
-					</td>
+		  </td>
       </tr>
     </table></td>
   </tr>

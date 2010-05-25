@@ -39,7 +39,7 @@ $seleccionar = 'SELECT *
 	WHERE a.id_alumno = r.id_alumno
 		AND r.id_grado = g.id_grado
 		AND r.id_seccion = s.id_seccion
-	ORDER BY a.id_alumno';
+	ORDER BY a.id_alumno DESC' ;
 
 //$seleccionar = "SELECT * FROM alumno a, grado g, secciones s WHERE a.id_grado = g.id_grado AND g.id_grado = s.id_grado ORDER BY a.id_alumno DESC";
 $ejecutar = mysql_query($seleccionar);
