@@ -54,8 +54,8 @@ require_once('../../conexion.php');
 				
 				<table width="100%">
 												<tr>
-													<td width="100">Trimestres:</td>
-													<td align="left">1er _____ 2do _____ 3ro _____</td>
+													<td width="100">Bimestres:</td>
+													<td align="left">1er _____ 2do _____ 3ro _____ 4to _____</td>
 												</tr>
 						</table>
 				
