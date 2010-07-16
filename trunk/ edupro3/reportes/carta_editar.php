@@ -20,8 +20,10 @@
         <td width="208"><img src="../images/logo.jpg" width="150" height="150" /></td>
         <td width="582"><div align="center">
           <p><span class="Estilo3"><br />
-              <span class="Estilo8">INEB Adscrito a la Escuela Normal<br />
-              Rural No. 5 Prof. &quot;Julio Edmundo Rosado Pinelo&quot; <br />
+              <span class="Estilo8">Instituto de Educaci&oacute;n Diversificado <br />
+              Adscrito a la Escuela Normal 
+              Rural No. 5 <br />
+              Prof. &quot;Julio Edmundo Rosado Pinelo&quot; <br />
               Santa Elena, Pet&eacute;n.</span></span><br />
           </p>
         </div></td>
@@ -38,7 +40,10 @@
       <p align="left" class="Estilo3"><br />
         <br />
         Se&ntilde;or Director<br />
-        INEB Adscrito Escuela Normal.<br />
+        INED Adscrito Escuela Normal Rural No. 5<br />
+        Prof. &quot;Julio Edmundo Rosado Pinelo&quot;
+        <br />
+        Santa Elena, Pet&eacute;n. <br />
         Presente.<br />
         <br />
         <br />
