@@ -94,6 +94,8 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 		$infot[0][] = array('text' => $row['examen'], 'align' => 'center', 'width' => 75);
 	}
 	
+	$infot[0][] = array('text' => 'Prom', 'align' => 'center', 'width' => '50');
+	
 	$sql = "SELECT *
 		FROM cursos c, reinscripcion r
 		WHERE r.id_grado = " . $secciones['id_grado'] . '
@@ -115,6 +117,9 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 			WHERE examen NOT LIKE \'%Recup%\'
 			ORDER BY id_examen';
 		$ejecutar3 = mysql_query($sql);
+		
+		$note_each = 0;
+		$note_each_f = 0;
 		
 		$total_examenes = 0;
 		while ($row = mysql_fetch_array($ejecutar3))
@@ -145,9 +150,15 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 				
 				$note_sum[$row['id_examen']] += $notas['nota'];
 				$note_quant[$row['id_examen']]++;
+				
+				$note_each_f++;
+				$note_each += $notas['nota'];
 			}
 		}
 		
+		if (!$note_each_f) $note_each_f = 1;
+		
+		$infot[$j][] = array('text' => ($note_each / $note_each_f), 'align' => 'center');
 		
 		$j++;
 	}
@@ -163,6 +174,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 	{
 		$infot[$j][] = array('text' => '', 'align' => 'center');
 	}
+	$infot[$j][] = array('text' => '', 'align' => 'center');
 	
 	$pdf->multitable($infot, 35, $pdf->top() + 20, 5, 9, 1, array('last_height' => $pdf->top()));
 	
