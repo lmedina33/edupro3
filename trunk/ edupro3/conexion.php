@@ -6,7 +6,7 @@ $db = 'school';
 */
 $usuario = 'root';
 $contrasena ='8i8o11ag';
-$db = 'edupro';
+$db = 'edupro3';
 
 $servidor = 'localhost';
 
