@@ -567,7 +567,7 @@ class _pdf
 	function text_wrap($text, $fontsize, $width, $x, $y, $line_height = 0, $align = '', $line_limit = false)
 	{
 		$line_height = (!$line_height) ? $fontsize + 2 : $line_height;
-		$text_lines = $this->calculate_lines($width, $fontsize, $text, $line_limit);
+		$text_lines = $this->calculate_lines($width - 5, $fontsize, $text, $line_limit);
 		
 		foreach ($text_lines as $row)
 		{
