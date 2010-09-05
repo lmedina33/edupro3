@@ -158,7 +158,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 		
 		if (!$note_each_f) $note_each_f = 1;
 		
-		$infot[$j][] = array('text' => ($note_each / $note_each_f), 'align' => 'center');
+		$infot[$j][] = array('text' => round($note_each / $note_each_f), 'align' => 'center');
 		
 		$j++;
 	}
