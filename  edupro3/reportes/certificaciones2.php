@@ -72,15 +72,15 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 	$text_block4 = 'Durante el Ciclo Escolar ' . date('Y') . ' curs&oacute; el ' . $grado . ' GRADO DE BACHILLER EN CIENCIAS Y LETRAS  CON ORIENTACION EN COMPUTACION. Con C&oacute;digo Personal: ' . $arreglo['codigo_alumno'] . '. Asignado por el Ministerio de Educaci&oacute;n y que ha tenido a la vista los Cuadros de Registro de Evaluaci&oacute;n en donde aparece que se hizo acreedor (a) a las notas siguientes:';
 
 	/*
-	185 de margen derecho
+	185 de margen derecho13
 	65 margen izquierdo
 	20 separacion de lineas de parrafo
 	*/
 	
-	$pdf->text_wrap($text_block, 9, $pdf->page_width() - 185, 65, $pdf->top(150), 20);
-	$pdf->text_wrap($text_block2, 13, $pdf->page_width(), 65, $pdf->top(75), 20, 'center');
-	$pdf->text_wrap($text_block3, 9, $pdf->page_width() - 185, 65, $pdf->top(30), 20);
-	$pdf->text_wrap($text_block4, 9, $pdf->page_width() - 185, 65, $pdf->top(20), 20);
+	$pdf->text_wrap($text_block, 11, $pdf->page_width() - 185, 65, $pdf->top(150), 20);
+	$pdf->text_wrap($text_block2, 15, $pdf->page_width(), 65, $pdf->top(75), 20, 'center');
+	$pdf->text_wrap($text_block3, 11, $pdf->page_width() - 185, 65, $pdf->top(30), 20);
+	$pdf->text_wrap($text_block4, 11, $pdf->page_width() - 185, 65, $pdf->top(20), 20);
 	
 	$infot = array(
 		array(
@@ -170,7 +170,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 	$text_block = 'En fe de lo anterior se extiende el presente certificado en Santa Elena de la Cruz, Flores, Pet&eacute;n, 
 	a los veintinueve d&iacute;as de octubre de ' . $cv->cv(date('Y')) . '.';
 	
-	$pdf->text_wrap($text_block, 9, $pdf->page_width() - 185, 65, $pdf->top(50), 20);
+	$pdf->text_wrap($text_block, 11, $pdf->page_width() - 185, 65, $pdf->top(50), 20);
 	
 	$names = array(array(
 		array('text' => 'P.A.P. Carmen Patz&aacute;n Cos', 'align' => 'center'),
@@ -181,7 +181,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 		array('text' => 'Director', 'align' => 'center')
 	));
 	
-	$pdf->multitable($names, 35, $pdf->top(100), 5, 9, 0);
+	$pdf->multitable($names, 35, $pdf->top(100), 5, 11, 0);
 	
 	$i++;
 }
