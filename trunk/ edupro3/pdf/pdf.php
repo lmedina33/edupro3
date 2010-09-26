@@ -493,8 +493,20 @@ class _pdf
 				
 				if (f($td['text']))
 				{
-					$cell_area = $widths[$j] - ($padding * 2);
+					$tmp_padding = ($padding * 2);
+					
+					if (strlen($td['text']) > 15)
+					{
+						$tmp_padding += 10;
+					}
+					
+					$cell_area = $widths[$j] - $tmp_padding;
 					$pos_text = $pos_left + $padding;
+					
+					if (!isset($td['words']))
+					{
+						$td['words'] = 0;
+					}
 					
 					$text_lines = $this->text_wrap($td['text'], $fontsize, $cell_area, $pos_text, $pos_top, $fontsize + 3, $td['align'], $td['words']);
 					
@@ -506,7 +518,8 @@ class _pdf
 						
 						if ($text_lines > 1)
 						{
-							$accum_top -= ($fontsize / 2) + ($text_lines + 0);
+							$accum_top -= ($fontsize / 2) + ($text_lines - 1);
+							$max_top += 1;
 						}
 					}
 				}
@@ -567,7 +580,7 @@ class _pdf
 	function text_wrap($text, $fontsize, $width, $x, $y, $line_height = 0, $align = '', $line_limit = false)
 	{
 		$line_height = (!$line_height) ? $fontsize + 2 : $line_height;
-		$text_lines = $this->calculate_lines($width - 5, $fontsize, $text, $line_limit);
+		$text_lines = $this->calculate_lines($width, $fontsize, $text, $line_limit);
 		
 		foreach ($text_lines as $row)
 		{
