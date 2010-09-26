@@ -65,10 +65,10 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 	}
 	
 	
-	$text_block = 'La Infrascrita Oficinista I, del Instituto Nacional de Educaci&oacute;n Diversificada, Adscrito a la Escuela Normal Rural No. 5 &quot;Profesor Julio Edmundo Rosado Pinelo&quot; de Santa Elena de la Cruz, Flores, Pet&eacute;n. Seg&uacute;n Acuerdo Ministerial No. 379 del 26 de febrero del 2009.';
+	$text_block = 'La Infrascrita Oficinista I, del Instituto Nacional de Educaci&oacute;n Diversificada, Adscrito a la Escuela Normal Rural No. 5 &quot;Profesor Julio Edmundo Rosado Pinelo&quot; de Santa Elena de la Cruz, Flores, Pet&eacute;n. Seg&uacute;n Acuerdo Ministerial No. 379 del 26 de febrero del 2009. Resoluci&oacute;n No. 002-2009 de fecha 20 de enero de 2009 DDE-Pet&eacute;n.';
 	
 	$text_block2 = 'Certifica:';
-	$text_block3 = 'Que el (la) alumno (a): ' . strtoupper($arreglo['nombre_alumno'] . ' ' . $arreglo['apellido']);
+	$text_block3 = 'Que el (la) alumno (a): ' . $arreglo['nombre_alumno'] . ' ' . $arreglo['apellido'];
 	$text_block4 = 'Durante el Ciclo Escolar ' . date('Y') . ' curs&oacute; el ' . $grado . ' GRADO DE BACHILLER EN CIENCIAS Y LETRAS  CON ORIENTACION EN COMPUTACION. Con C&oacute;digo Personal: ' . $arreglo['codigo_alumno'] . '. Asignado por el Ministerio de Educaci&oacute;n y que ha tenido a la vista los Cuadros de Registro de Evaluaci&oacute;n en donde aparece que se hizo acreedor (a) a las notas siguientes:';
 
 	/*
@@ -78,7 +78,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 	*/
 	
 	$pdf->text_wrap($text_block, 11, $pdf->page_width() - 185, 65, $pdf->top(150), 20);
-	$pdf->text_wrap($text_block2, 15, $pdf->page_width(), 65, $pdf->top(75), 20, 'center');
+	$pdf->text_wrap($text_block2, 15, $pdf->page_width(), 0, $pdf->top(100), 20, 'center');
 	$pdf->text_wrap($text_block3, 11, $pdf->page_width() - 185, 65, $pdf->top(30), 20);
 	$pdf->text_wrap($text_block4, 11, $pdf->page_width() - 185, 65, $pdf->top(20), 20);
 	
@@ -124,6 +124,9 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 			$ejecutar4 = mysql_query($sql);
 			$notas = mysql_fetch_assoc($ejecutar4);
 			
+			if (!isset($notas['nota'])) $notas['nota'] = 0;
+			if (!isset($notas['nota2'])) $notas['nota2'] = 0;
+			
 			$total = $notas['nota'] + $notas['nota2'];
 			
 			$per_curse += $total;
@@ -154,11 +157,20 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 		$resultado = ($per_sum >= 60) ? 'Aprobado' : 'No aprobado';
 		if (!$per_sum) $resultado = '';
 		
+		if ($per_sum)
+		{
+			$lets = ucfirst($cv->cv($per_sum));
+		}
+		else
+		{
+			$lets = '';
+		}
+		
 		$infot[$j] = array(
 			array('text' => $j, 'align' => 'center', 'width' => 25),
 			array('text' => $arreglo2['nombre_curso'], 'align' => 'left'),
 			array('text' => $per_sum, 'align' => 'center', 'width' => 30),
-			array('text' => ucfirst($cv->cv($per_sum)), 'align' => 'left'),
+			array('text' => $lets, 'align' => 'left'),
 			array('text' => $resultado, 'align' => 'center', 'width' => 75)
 		);
 		
@@ -167,8 +179,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 	
 	$pdf->multitable($infot, 65, $pdf->top(100), 5, 9, 1, array('last_height' => $pdf->top()));
 	
-	$text_block = 'En fe de lo anterior se extiende el presente certificado en Santa Elena de la Cruz, Flores, Pet&eacute;n, 
-	a los veintinueve d&iacute;as de octubre de ' . $cv->cv(date('Y')) . '.';
+	$text_block = 'En fe de lo anterior se extiende el presente certificado en Santa Elena de la Cruz, Flores, Pet&eacute;n, a los veintinueve d&iacute;as del mes de octubre del ' . $cv->cv(date('Y')) . '.';
 	
 	$pdf->text_wrap($text_block, 11, $pdf->page_width() - 185, 65, $pdf->top(50), 20);
 	
