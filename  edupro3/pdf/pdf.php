@@ -569,7 +569,19 @@ class _pdf
 				break;
 		}
 		
-		return $this->cp->addTextWrap($x, $this->cp->cy($y), $this->cp->getTextWidth($fontsize, $text) + 1, $fontsize, $text);
+		$text_width = $this->cp->getTextWidth($fontsize, $text) + 1;
+		
+		if (!$width || $align != 'full')
+		{
+			$width = $text_width;
+		}
+		
+		if ($text_width + 100 < $width)
+		{
+			$align = 'left';
+		}
+		
+		return $this->cp->addTextWrap($x, $this->cp->cy($y), $width, $fontsize, $text, $align);
 	}
 	
 	function calculate_lines($width, $fontsize, $text, $line_limit)
@@ -577,18 +589,36 @@ class _pdf
 		return $this->words($width, $fontsize, explode(' ', $text), $line_limit);
 	}
 	
-	function text_wrap($text, $fontsize, $width, $x, $y, $line_height = 0, $align = '', $line_limit = false)
+	function text_wrap($text, $fontsize, $width, $x, $y, $line_height = 0, $align = '', $line_limit = false, $width2 = 0)
 	{
 		$line_height = (!$line_height) ? $fontsize + 2 : $line_height;
-		$text_lines = $this->calculate_lines($width, $fontsize, $text, $line_limit);
+		$text_lines = $this->calculate_lines($width - $width2, $fontsize, $text, $line_limit);
 		
+		$gugu = $y;
+		
+		$brs = 0;
 		foreach ($text_lines as $row)
 		{
-			$this->text($x, $y, $row, $fontsize, $align, $width);
-			$y += $line_height + 1;
+			if (strpos($row, '[br]') !== false)
+			{
+				//$gugu += 20;
+				$brs++;
+				
+				$row = str_replace('[br]', '', $row);
+			}
+			
+			$this->text($x, $gugu, $row, $fontsize, $align, $width);
+			$gugu += $line_height + 1;
+			$y = $gugu;
 		}
 		
-		return count($text_lines);
+		$misshi = count($text_lines);
+		if ($misshi > 1 && $brs)
+		{
+			$brs = 0;
+		}
+		
+		return $misshi + $brs;
 	}
 	
 	function words($width, $fontsize, $text, $maxline = false, $skip_short = true)

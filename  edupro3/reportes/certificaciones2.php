@@ -80,7 +80,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 	$pdf->text_wrap($text_block, 11, $pdf->page_width() - 185, 65, $pdf->top(150), 20);
 	$pdf->text_wrap($text_block2, 15, $pdf->page_width(), 0, $pdf->top(100), 20, 'center');
 	$pdf->text_wrap($text_block3, 11, $pdf->page_width() - 185, 65, $pdf->top(30), 20);
-	$pdf->text_wrap($text_block4, 11, $pdf->page_width() - 185, 65, $pdf->top(20), 20);
+	$pdf->text_wrap($text_block4, 11, $pdf->page_width() - 185, 65, $pdf->top(20), 20, 'full');
 	
 	$infot = array(
 		array(

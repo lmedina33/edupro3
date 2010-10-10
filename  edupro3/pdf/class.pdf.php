@@ -2407,7 +2407,7 @@ function addTextWrap($x,$y,$width,$size,$text,$justification='left',$angle=0,$te
   }
   // then there was no need to break this line
   if ($justification=='full'){
-    $justification='left';
+    //$justification='left';
   }
   $adjust=0;
   $tmpw=$w*$size/1000;
