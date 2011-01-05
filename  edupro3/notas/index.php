@@ -98,6 +98,32 @@ encabezado('Ingreso de Notas');
 					?>
 				</td>
 			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td class="text1 a_right">A&ntilde;o:</td>
+				<td>
+					<?php
+					
+					$anioa = date('Y');
+					$anio = array(2010, 2011);
+					
+					echo '<select name="anio">';
+					
+					foreach ($anio as $row)
+					{
+						echo '<option value="' . $row . '"' . (($row == $anioa) ? 'selected="selected"' : '') . '>' . $row . '</option>';
+					}
+					
+					echo '</select>';
+					
+					?>
+				</td>
+			</tr>
 		</table>
 		
 		<br />
