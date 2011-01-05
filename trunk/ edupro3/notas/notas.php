@@ -107,7 +107,7 @@ encabezado('Ingreso de Calificaciones');
 		<table width="96%" align="center">
 			<?php
 			
-			$anio = date('Y');
+			$anio = (int) $_POST['anio'];
 			
 			$sql = 'SELECT * FROM alumno a, grado g, reinscripcion r
 				WHERE r.id_grado = g.id_grado
