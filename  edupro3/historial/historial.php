@@ -51,7 +51,7 @@ function MM_validateForm() { //v4.0
 
 <body>
 
-    <td width="833"><form action="../reinscripcion/cod_reinscripcion.php" method="post" name="formulario" id="formulario" onsubmit="MM_validateForm('encargado','','R','telefonos','','R');return document.MM_returnValue">
+    <td width="833">
       <table width="833" border="0" align="center" bgcolor="#FFFFFF">
         <tr>
           <td valign="top">&nbsp;</td>
@@ -64,6 +64,8 @@ function MM_validateForm() { //v4.0
                 <a href="../conexion.php"></a><br />
           </label></td>
           <td width="809"><div align="right">
+          
+          <form action="../reinscripcion/cod_reinscripcion.php" method="post" name="formulario" id="formulario" onsubmit="MM_validateForm('encargado','','R','telefonos','','R');return document.MM_returnValue">
 		  <div class="content2"> 
 		  <?php include('../menu.php'); ?>
 		  <div class="title"> Historial General del Alumno </div>
@@ -132,7 +134,8 @@ function MM_validateForm() { //v4.0
                         <td class="Estilo4">&nbsp;</td>
                         <td class="Estilo4"><label></label></td>
                       </tr>
-                  </table></td>
+                  </table>
+                 </form></td>
                 </tr>
                 <tr>
                   <td bgcolor="#999999"><div align="center" class="Estilo4">Historial de Grados </div></td>
@@ -181,6 +184,14 @@ function MM_validateForm() { //v4.0
                           </div></td>
                           <td width="252" align="left" class="text2"><div align="left"><?php echo $arreglo['encargado_reinscripcion']; ?></div></td>
                           <td width="102" class="text2"><div align="center"><a href="../reportes/grado.php?id_alumno=<?php echo $arreglo['id_alumno']; ?>&amp;id_grado=<?php echo $arreglo['id_grado']; ?> " target="_blank"><img src="../images/iconos/133.ico" border="0" /></a></div></td>
+                          <td width="102" class="text2">
+	                          <form action="../reportes/certificaciones.php" method="post">
+	                          <input type="hidden" name="alumno" value="<?php echo $arreglo['id_alumno']; ?>" />
+	                          <input type="hidden" name="anio" value="<?php echo $arreglo['anio']; ?>" />
+	                          <input type="hidden" name="seccion" value="<?php echo $arreglo['id_seccion']; ?>" />
+	                          <input type="submit" name="enviar" value="Certificado" />
+	                          </form>
+													</td>
                         </tr>
                       </table>
                     <?php }?>
@@ -192,7 +203,7 @@ function MM_validateForm() { //v4.0
             </table></td>
         </tr>
       </table>
-    </form>
+    
     
 </body>
 </html>
@@ -203,5 +214,5 @@ document.formulario.encargado.focus();
 
 <script language="JavaScript" type="text/javascript">
 function alerta(){
-return window.confirm("�Seguro que desea Realizar la Acci�n...?");}
+return window.confirm("Seguro que desea Realizar la Accion...?");}
 </script>
