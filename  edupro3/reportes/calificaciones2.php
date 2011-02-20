@@ -12,6 +12,7 @@ $page_count = 0;
 $coord_sum = 0;
 
 $id_seccion = $_POST['seccion'];
+$anio = $_POST['anio'];
 
 $sql = 'SELECT *
 	FROM secciones s, grado g
@@ -24,7 +25,7 @@ $secciones = mysql_fetch_array($ejecutar);
 $seleccionar = 'SELECT * FROM reinscripcion r, secciones s, grado g, alumno a
 	WHERE r.id_grado = ' . $secciones['id_grado'] . '
 		AND r.id_seccion = ' . $secciones['id_seccion'] . '
-		AND r.anio = ' . date('Y') . '
+		AND r.anio = ' . $anio . '
 		AND r.id_seccion = s.id_seccion
 		AND r.id_alumno = a.id_alumno
 		AND r.id_grado = g.id_grado';
@@ -100,7 +101,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 		FROM cursos c, reinscripcion r
 		WHERE r.id_grado = " . $secciones['id_grado'] . '
 			AND r.id_seccion = ' . $secciones['id_seccion'] . '
-			AND r.anio = ' . date('Y') . '
+			AND r.anio = ' . $anio . '
 			AND r.id_grado = c.id_grado
 			AND r.id_alumno = ' . (int) $arreglo['id_alumno'];
 	$ejecutar2 = mysql_query($sql);

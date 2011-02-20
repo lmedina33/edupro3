@@ -17,6 +17,7 @@ if (!$arreglo = mysql_fetch_assoc($ejecutar))
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Re-Inscripci&oacute;n del Alumno</title>
 <link rel="stylesheet" type="text/css" href="../style.css" />
+<script src="../jquery.js" type="text/javascript"></script>
 <script type="text/JavaScript">
 <!--
 function validar(){
@@ -165,22 +166,48 @@ function MM_validateForm() { //v4.0
                             <tr>
                               <td class="text1">&nbsp;</td>
                               <td class="text1"><div align="right" class="text2">Grado:</div></td>
-                              <td><label>
-                                <?php 
-			  $seleccionar = "SELECT * FROM grado";
-			  $ejecutar = mysql_query($seleccionar);
-			  	echo '<select name="grado">';
-				echo '<option value="0">Seleccione </option>';
-				//por cada registro encontrado en la tabla me genera un <option>
- 					 while ($arreglo = mysql_fetch_array($ejecutar)){
-  					  echo '<option value="' . $arreglo['id_grado'] . '" >' . $arreglo['nombre'],$arreglo['seccion'] . '</option>'; 
-
-							  }
-
-								echo '</select>'; 
-                ?>
-                              </label></td>
+                              <td><select id="grado" name="grado">
+					<?php
+					
+					$seleccionar = "SELECT *
+						FROM grado
+						WHERE id_grado NOT IN (
+							SELECT id_grado
+							FROM reinscripcion
+							WHERE carne = '$carne'
+						)";
+					$ejecutar = mysql_query($seleccionar);
+					
+					//echo '<option value="0">Seleccione </option>';
+					//por cada registro encontrado en la tabla me genera un <option>
+					while ($arreglo = mysql_fetch_array($ejecutar))
+					{
+						echo '<option value="' . $arreglo['id_grado'] . '" >' . $arreglo['nombre'] . '</option>';
+					}
+					
+					?>
+					</select></td>
                             </tr>
+                            <tr>
+                              <td class="text1">&nbsp;</td>
+                              <td class="text1"><div align="right">Seccion</div></td>
+                              <td><select id="seccion" name="seccion">
+						<?php
+						
+						$seleccionar = "SELECT * FROM secciones WHERE id_grado = 1";
+						$ejecutar = mysql_query($seleccionar);
+						
+						//echo '<option value="0">Seleccione </option>';
+						//por cada registro encontrado en la tabla me genera un <option>
+						while ($arreglo = mysql_fetch_array($ejecutar))
+						{
+							echo '<option value="' . $arreglo['id_seccion'] . '" >' . $arreglo['nombre_seccion'] . '</option>';
+						}
+						
+						?>
+					</select></td>
+                            </tr>
+                            
                             <tr>
                               <td class="text1">&nbsp;</td>
                               <td class="text1">&nbsp;</td>
@@ -228,7 +255,13 @@ function MM_validateForm() { //v4.0
                         <td bgcolor="#F3F3F3"><br />
                             <?php 
 				  $carne = $_GET['carne'];
-		$seleccionar = "SELECT * FROM reinscripcion r, alumno a, grado g WHERE r.id_alumno = a.id_alumno AND r.id_grado = g.id_grado AND r.carne = '$carne' ";
+		$seleccionar = "SELECT *
+			FROM reinscripcion r, alumno a, grado g, secciones s
+			WHERE r.id_alumno = a.id_alumno
+				AND r.id_grado = g.id_grado
+				AND r.carne = '$carne'
+				AND s.id_seccion = r.id_seccion
+				AND s.id_grado = g.id_grado";
 		$ejecutar = mysql_query($seleccionar);
 
 		while($arreglo = mysql_fetch_assoc($ejecutar)){
@@ -239,21 +272,7 @@ function MM_validateForm() { //v4.0
                               <tr>
                                 <td width="94" class="Estilo6"><div align="center" class="text2"><?php echo $arreglo['anio']; ?></div></td>
                                 <td width="342"><div align="center" class="Estilo6">
-                                    <div align="left"><span class="tex2">
-                                      <?php 
-				
-			//	$seleccionar = "SELECT * FROM grado";
-			//	$ejecutar = mysql_query($ejecutar);
-				
-				$conteo= $arreglo['id_grado'];
-				
-				switch($conteo){
-				case $arreglo['id_grado']:
-				echo $arreglo['nombre'] , $arreglo['seccion'];
-				break;
-				}
-				?>
-                                    </span></div>
+                                    <div align="left"><span class="tex2"><?php echo $arreglo['nombre'] . ' ' . $arreglo['nombre_seccion']; ?></span></div>
                                 </div></td>
                                 <td width="252" align="left" class="text2"><div align="left"><?php echo $arreglo['encargado_reinscripcion']; ?></div></td>
                                 <td width="102" class="text2"><?php echo $arreglo['fecha_reinscripcion']; ?></td>
@@ -268,14 +287,28 @@ function MM_validateForm() { //v4.0
             </table>
         </form>
       
-</body>
-</html>
+
+
 <script language="JavaScript" type="text/javascript">
 document.formulario.encargado.focus();
-</script>
 
-
-<script language="JavaScript" type="text/javascript">
+//<![CDATA[
 function alerta(){
 return window.confirm("�Seguro que desea Realizar la Acci�n...?");}
+
+$(function() {
+	$('#grado').change(function() {
+		$.ajax({
+			type: "POST",
+			url: "../actseccion.php",
+			data: "grado=" + this.value,
+			success: function(msg) {
+				$('#seccion').html(msg);
+			}
+ });
+	});
+});
+
 </script>
+</body>
+</html>

@@ -98,6 +98,27 @@ encabezado('Ingreso de Notas');
 					?>
 				</td>
 			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td class="text1 a_right">A&ntilde;o:</td>
+				<td>
+					<select name="anio" id="anio">
+						<?php
+						  
+						  for ($i_year = date('Y'); $i_year >= 2010; $i_year--)
+						  {
+							echo '<option value="' . $i_year . '">' . $i_year . '</option>';
+						  }
+						  
+						  ?>
+					</select>
+				</td>
+			</tr>
 		</table>
 		
 		<br />

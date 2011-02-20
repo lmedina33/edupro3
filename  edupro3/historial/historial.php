@@ -155,7 +155,13 @@ function MM_validateForm() { //v4.0
 				  $carne = $_GET['carne'];
 				 // $id_alumno = $_GET['id_alumno'];
 				  
-		$seleccionar = "SELECT * FROM reinscripcion r, alumno a, grado g WHERE r.id_alumno = a.id_alumno AND r.id_grado = g.id_grado AND r.carne = '$carne'";
+		$seleccionar = "SELECT *
+			FROM reinscripcion r, alumno a, grado g, secciones s
+			WHERE r.id_alumno = a.id_alumno
+				AND r.id_grado = g.id_grado
+				AND s.id_seccion = r.id_seccion
+				AND s.id_grado = r.id_grado
+				AND r.carne = '$carne'";
 		$ejecutar = mysql_query($seleccionar);
 
 		while($arreglo = mysql_fetch_assoc($ejecutar)){
@@ -166,20 +172,7 @@ function MM_validateForm() { //v4.0
                         <tr>
                           <td width="94" class="Estilo6"><div align="center" class="text2"><?php echo $arreglo['anio']; ?></div></td>
                           <td width="342"><div align="center" class="Estilo6">
-                              <div align="left"><span class="tex2">
-                                <?php 
-				
-			//	$seleccionar = "SELECT * FROM grado";
-			//	$ejecutar = mysql_query($ejecutar);
-				
-			//	$conteo= $arreglo['id_grado'];
-				
-				//switch($conteo){
-				//case $arreglo['id_grado']:
-				echo $arreglo['nombre'] , $arreglo['seccion'];
-				//break;
-				//}
-				?>
+                              <div align="left"><span class="tex2"><?php echo $arreglo['nombre'] . ', secci&oacute;n: ' . $arreglo['nombre_seccion']; ?>
                               </span></div>
                           </div></td>
                           <td width="252" align="left" class="text2"><div align="left"><?php echo $arreglo['encargado_reinscripcion']; ?></div></td>

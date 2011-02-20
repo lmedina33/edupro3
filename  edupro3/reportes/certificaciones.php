@@ -4,7 +4,14 @@ require_once('../conexion.php');
 
 encabezado('Certificaciones Anuales');
 
-$alumno = (int) $_POST['alumno'];
+if (isset($_POST) && isset($_POST['alumno']))
+{
+	$alumno = $_POST['alumno'];
+}
+else
+{
+	$alumno = 0;
+}
 
 ?>
 
@@ -76,8 +83,14 @@ $alumno = (int) $_POST['alumno'];
 				<td class="text1 a_right">A&ntilde;o:</td>
 				<td>
 					<select name="anio" id="anio">
-						<option value="2011">2011</option>
-						<option value="2010">2010</option>
+						<?php
+						  
+						  for ($i_year = date('Y'); $i_year >= 2010; $i_year--)
+						  {
+							echo '<option value="' . $i_year . '">' . $i_year . '</option>';
+						  }
+						  
+						  ?>
 					</select>
 				</td>
 			</tr>
