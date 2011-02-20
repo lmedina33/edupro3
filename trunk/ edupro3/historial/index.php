@@ -54,17 +54,8 @@ function MM_validateForm() { //v4.0
                       <br />
                       <a href="../conexion.php"></a><br />
                 </label></td>
-                <td width="809"><div align="right">
-                    <table width="353" border="0">
-                      <tr>
-                        <td width="24">&nbsp;</td>
-                        <td width="24">&nbsp;</td>
-                        <td width="24">&nbsp;</td>
-                        <td width="172">&nbsp;</td>
-                        <td width="87"><div align="right"><img src="../images/iconos/chat-home.ico" class="text1" /><span class="text1 Estilo6" title="Ir a Pagina Principal..."><a href="../index.php">Principal</a></span></div></td>
-                      </tr>
-                    </table>
-                </div>
+                <td width="809"><br />
+								<?php include('../menu.php');?>
                     <table width="821" align="center">
                       <tr>
                         <td width="806" bgcolor="#4682B4"><div class="title">Modulo de Historial del Alumno </div></td>
@@ -87,7 +78,7 @@ function MM_validateForm() { //v4.0
                                 <input name="carne" type="text" id="carne" aurotomplete="off" size="20"  autocomplete="off" />
                               </span></div></td>
                               <td class="text1"><div align="left" class="text2"><a href="#"></a>
-                                  <input name="submit" type="image" src="../images/arrow_right.png" title="Buscar por carné..." width="75" height="75" />
+                                  <input name="submit" type="image" src="../images/arrow_right.png" title="Buscar por carnï¿½..." width="75" height="75" />
 </div></td>
                             </tr>
                             
@@ -113,7 +104,7 @@ function MM_validateForm() { //v4.0
             </table>
         </form></td>
       </tr>
-    </table>
+</table>
 </body>
 </html>
 <script language="JavaScript" type="text/javascript">

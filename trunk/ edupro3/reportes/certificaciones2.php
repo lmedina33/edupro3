@@ -47,18 +47,16 @@ if ($alumno)
 	}
 }
 
+$ejecutar = mysql_query($seleccionar);
+
 $i = 0;
 while ($arreglo = mysql_fetch_assoc($ejecutar))
 {
 	if ($i) $pdf->new_page();
 	
 	$pdf->cp->addJpegFromFile('../images/logo-cert.jpg', 65, $pdf->cp->cy(125), 400); 
-	/*
-	$pdf->text(100, $pdf->top(75), 'COLEGIO MIXTO DE EDUCACION MEDIA CON ORIENTACION UNIVERSITARIA', 12, 'center', $pdf->page_width(125));
-	$pdf->text(100, $pdf->top(18), '"CMEMOU"', 12, 'center', $pdf->page_width(125));
-	$pdf->text(100, $pdf->top(15), 'Santa Elena, Flores, Pet&eacute;n.', 12, 'center', $pdf->page_width(125));
-	*/
-	$grado = strtoupper(strtolower(implode(' ', array_splice(explode(' ', $arreglo['nombre']), 0, 1))));
+	
+	$grado = ucfirst(strtolower(implode(' ', array_splice(explode(' ', $arreglo['nombre']), 0, 1))));
 	$grado_sub = '';
 	
 	switch ($arreglo['id_grado'])

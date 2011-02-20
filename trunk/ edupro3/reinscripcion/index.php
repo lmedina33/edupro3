@@ -53,10 +53,14 @@ require_once('../conexion.php');
 			</tr>
 			<?php
 
-			$fecha = date("Y");
+			$anio = date("Y");
 			$status = "ReInscrito";
 
-			$seleccionar = "SELECT * FROM reinscripcion r, alumno a, grado g WHERE r.id_alumno = a.id_alumno AND r.id_grado = g.id_grado AND anio = '$fecha' ";
+			$seleccionar = "SELECT *
+				FROM reinscripcion r, alumno a, grado g
+				WHERE r.id_alumno = a.id_alumno
+					AND r.id_grado = g.id_grado
+					AND anio = '$anio' ";
 			$ejecutar = mysql_query($seleccionar);
 
 			while ($arreglo = mysql_fetch_assoc($ejecutar))

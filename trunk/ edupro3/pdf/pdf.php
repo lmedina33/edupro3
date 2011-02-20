@@ -397,7 +397,7 @@ class _pdf
 			}
 		}
 		
-		$td_def = array('text' => '', 'align' => '', 'words' => 0, 'colspan' => 0, 'rowspan' => 0, 'width' => 0);
+		$td_def = array('text' => '', 'align' => '', 'words' => 0, 'colspan' => 0, 'rowspan' => 0, 'width' => 0, 'merge' => false);
 		
 		$viewport = $this->page_width($left);
 		$hport = $this->page_height();
@@ -461,8 +461,7 @@ class _pdf
 		{
 			$pos_left = $pos_left_orig = $left;
 			
-			//$pos_top = $this->top($top)/* + $accum_top*/;
-			$pos_top = $this->top(($accum_top * 2) + 4)/* + $accum_top*/;
+			$pos_top = $this->top(($accum_top * 2) + 4);
 			$max_top = 0;
 			
 			$all_height += ($accum_top * 2) + 4;
@@ -470,13 +469,17 @@ class _pdf
 			if ($all_height > $hport - 50)
 			{
 				$this->new_page();
-				//$this->top(($accum_top * 2) + 4, true);
 				$pos_top = $this->top(25, true);
 				$all_height = 0;
 			}
 			
 			foreach ($tr as $j => $td)
 			{
+				if (!isset($td['merge']))
+				{
+					$td['merge'] = false;
+				}
+				
 				if ($border)
 				{
 					$borders[$j]['left'] = $pos_left;
@@ -487,8 +490,17 @@ class _pdf
 						$borders[$j]['right'] = $pos_left + $widths[$j];
 					}
 					
+					$border_top = true;
+					if (empty($td['text']) && $td['merge'])
+					{
+						$border_top = false;
+					}
+					
 					// Top
-					$this->cp->line($pos_left, $this->cp->cy($pos_top - $fontsize - 2), $pos_left + $widths[$j], $this->cp->cy($pos_top - $fontsize - 2));
+					if ($border_top)
+					{
+						$this->cp->line($pos_left, $this->cp->cy($pos_top - $fontsize - 2), $pos_left + $widths[$j], $this->cp->cy($pos_top - $fontsize - 2));
+					}
 				}
 				
 				if (f($td['text']))
@@ -531,9 +543,6 @@ class _pdf
 			{
 				$max_top += $pos_top;
 				
-				// Bottom
-				$this->cp->line($pos_left_orig, $this->cp->cy($max_top), $pos_left, $this->cp->cy($max_top));
-				
 				foreach ($borders as $j => $border)
 				{
 					// Left
@@ -546,6 +555,11 @@ class _pdf
 					}
 				}
 			}
+		}
+		
+		if ($border)
+		{
+			$this->cp->line($pos_left_orig, $this->cp->cy($max_top), $pos_left, $this->cp->cy($max_top));
 		}
 		
 		return $this->top();

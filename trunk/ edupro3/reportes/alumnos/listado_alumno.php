@@ -22,10 +22,7 @@ require_once('../../conexion.php');
         <td><img src="../../images/fond1.jpg" width="830" height="150" /></td>
       </tr>
       <tr>
-        <td width="8" valign="top"><label>
-              
-              <a href="../../conexion.php"></a><br />
-        </label></td>
+        <td width="8" valign="top">&nbsp;</td>
         <td width="809"><div align="right">
             <div id="content2">
               <?php include('../../menu.php'); ?>
@@ -39,12 +36,13 @@ require_once('../../conexion.php');
                   <table width="776" border="0">
                     <tr>
                       <td width="58">&nbsp;</td>
-                      <td width="669"><form action="listado_alumno1.php" method="get" name="form1" target="_blank" id="form1">
-                        <select id="grado" name="grado">
-												<?php
-                        
-                        $seleccionar = "SELECT * FROM grado";
-                        $ejecutar = mysql_query($seleccionar);
+                      <td width="669">
+						<form action="listado_alumno1.php" method="get" name="form1" target="_blank" id="form1">
+							<select id="grado" name="grado">
+								<?php
+								
+								$seleccionar = "SELECT * FROM grado";
+								$ejecutar = mysql_query($seleccionar);
                         
                         //echo '<option value="0">Seleccione </option>';
                         //por cada registro encontrado en la tabla me genera un <option>
@@ -70,6 +68,21 @@ require_once('../../conexion.php');
                         
                         ?>
 						  </select>
+						  
+						  <br /><br />
+						  A&ntilde;o:
+						  <select name="anio">
+						  <?php
+						  
+						  for ($i_year = date('Y'); $i_year >= 2010; $i_year--)
+						  {
+							echo '<option value="' . $i_year . '">' . $i_year . '</option>';
+						  }
+						  
+						  ?>
+						  </select>
+						  
+						  <br /><br />
                           <label>
                                             <input type="submit" name="Submit" value="Ver Listado..." />
                           </label>
@@ -77,14 +90,10 @@ require_once('../../conexion.php');
                       <td width="27">&nbsp;</td>
                     </tr>
                   </table>
-                <br />
                     <br />
-                    <div align="center"></div></td>
+                   </td>
               </tr>
-              <tr>
-                <td>&nbsp;</td>
-              </tr>
-            </table>
+              </table>
           <table width="820">
               <tr>
                 <td width="810"></td>
