@@ -169,14 +169,23 @@ function MM_validateForm() { //v4.0
                               <td><select id="grado" name="grado">
 					<?php
 					
+					$sql = "SELECT id_grado
+						FROM reinscripcion
+						WHERE carne = '" . $carne . "'
+						ORDER BY id_grado DESC
+						LIMIT 1";
+					$u_grado = mysql_query($sql);
+					
+					$last_grade = 0;
+					if ($u_result = mysql_fetch_array($u_grado))
+					{
+						$last_grade = $u_result['id_grado'];
+					}
+					
 					$seleccionar = "SELECT *
 						FROM grado
 						WHERE status = 'Alta' 
-						AND id_grado NOT IN (
-							SELECT id_grado
-							FROM reinscripcion
-							WHERE carne = '$carne'
-						)";
+						AND id_grado > " . $last_grade;
 					$ejecutar = mysql_query($seleccionar);
 					
 					$primer_seccion = 0;

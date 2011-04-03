@@ -32,6 +32,7 @@ require_once('../../conexion.php');
 				$grado = $_REQUEST['grado'];
 				$seccion = $_REQUEST['seccion'];
 				$bimestre = $_REQUEST['examen'];
+				$anio = $_REQUEST['anio'];
 				
 				$seleccionar = "SELECT *
 					FROM grado g, secciones s
