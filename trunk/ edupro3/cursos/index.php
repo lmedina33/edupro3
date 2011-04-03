@@ -13,7 +13,7 @@ require_once('../conexion.php');
 <!--
 
 function validar(){
-if(!confirm("Seguro que Desea Realizar la Acción...")){
+if(!confirm("Seguro que Desea Realizar la Acciï¿½n...")){
 return false;
 }
 MM_validateForm('curso','','R','capacidad','','RinRange0:99');return document.MM_returnValue;
@@ -137,7 +137,7 @@ function MM_validateForm() { //v4.0
                         <td class="text1"><div align="right">Grado:</div></td>
                         <td><label><?php
                         
-                        $seleccionar = "SELECT * FROM grado";
+                        $seleccionar = "SELECT * FROM grado WHERE status = 'Alta'";
                         $ejecutar = mysql_query($seleccionar);
                         
                         echo '<select name="grado" >';
@@ -225,5 +225,5 @@ document.formulario.curso.focus();
 
 <script language="JavaScript" type="text/javascript">
 function alerta(){
-return window.confirm("¿Seguro que desea Realizar la Acción...?");}
+return window.confirm("ï¿½Seguro que desea Realizar la Acciï¿½n...?");}
 </script>

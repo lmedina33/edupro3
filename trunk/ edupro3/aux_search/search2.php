@@ -98,7 +98,7 @@ function MM_validateForm() { //v4.0
 <body>
 <table width="339" border="0" align="left">
   <tr>
-    <td width="612"><form action="dato_alumno.php" method="get" name="formulario" id="formulario" onsubmit="MM_validateForm('carne','','R');return document.MM_returnValue">
+    <td width="612"><form action="search2.php" method="get" name="formulario" id="formulario" onsubmit="MM_validateForm('carne','','R');return document.MM_returnValue">
       <table width="331" align="center">
         <tr>
           <td width="806" bgcolor="#4682B4"><div align="center" class="Estilo6">Busqueda Rapida de Alumnos</div></td>
@@ -188,5 +188,5 @@ document.formulario.nombre.focus();
 
 <script language="JavaScript" type="text/javascript">
 function alerta(){
-return window.confirm("¿Seguro que desea Realizar la Acción...?");}
+return window.confirm("ï¿½Seguro que desea Realizar la Acciï¿½n...?");}
 </script>

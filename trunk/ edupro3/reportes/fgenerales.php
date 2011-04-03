@@ -25,7 +25,7 @@ encabezado('Ingreso de Notas');
 					
 					$seleccionar = "SELECT *
 						FROM grado g, secciones s
-						WHERE g.id_grado = s.id_grado";
+						WHERE g.id_grado = s.id_grado AND status = 'Alta'";
 					$ejecutar = mysql_query($seleccionar);
 					
 					echo '<select name="seccion" id="seccion">';
@@ -63,6 +63,25 @@ encabezado('Ingreso de Notas');
 					echo '</select>';
 					
 					?>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td class="text1 a_right">A&ntilde;o</td>
+				<td>
+				  <select name="anio">
+				  <?php
+				  
+				  for ($i_year = date('Y'); $i_year >= 2010; $i_year--)
+				  {
+						echo '<option value="' . $i_year . '">' . $i_year . '</option>';
+					}
+					
+					?>
+					</select>
 				</td>
 			</tr>
 		</table>

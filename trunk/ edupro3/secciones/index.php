@@ -76,7 +76,7 @@ function MM_validateForm() { //v4.0
                             <td class="text1"><div align="right">Grado:</div></td>
                             <td><?php
                         
-                        $seleccionar = "SELECT * FROM grado";
+                        $seleccionar = "SELECT * FROM grado WHERE status = 'Alta'";
                         $ejecutar = mysql_query($seleccionar);
                         
                         echo '<select name="grado" >';
@@ -125,7 +125,7 @@ function MM_validateForm() { //v4.0
                       <tr>
                         <td width="102">
 						<?php 
-						$seleccionar = "SELECT nombre, nombre_seccion FROM secciones s, grado g where g.id_grado = s.id_grado";
+						$seleccionar = "SELECT nombre, nombre_seccion FROM secciones s, grado g where g.id_grado = s.id_grado AND g.status = 'Alta'";
 						$ejecutar = mysql_query($seleccionar);
 						
 						while($arreglo = mysql_fetch_assoc($ejecutar))

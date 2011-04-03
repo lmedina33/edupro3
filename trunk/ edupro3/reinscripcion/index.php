@@ -57,10 +57,11 @@ require_once('../conexion.php');
 			$status = "ReInscrito";
 
 			$seleccionar = "SELECT *
-				FROM reinscripcion r, alumno a, grado g
+				FROM reinscripcion r, alumno a, grado g, secciones s
 				WHERE r.id_alumno = a.id_alumno
-					AND r.id_grado = g.id_grado
-					AND anio = '$anio' ";
+				AND r.id_grado = g.id_grado
+				AND s.id_seccion = r.id_seccion
+				AND anio = '$anio' ";
 			$ejecutar = mysql_query($seleccionar);
 
 			while ($arreglo = mysql_fetch_assoc($ejecutar))
@@ -71,7 +72,7 @@ require_once('../conexion.php');
 				<td width="15%" align="center"><?php echo $arreglo['fecha_reinscripcion']; ?></td>
 				<td width="15%"><?php echo $arreglo['carne']; ?></td>
 				<td width="35%"><img src="../images/iconos/59.ico" /> <?php echo $arreglo['nombre_alumno']; ?><?php echo " , " ?><?php echo $arreglo['apellido']; ?></td>
-				<td width="35%"><img src="../images/iconos/msn.ico" /> <?php echo $arreglo['nombre'] . $arreglo['seccion']; ?></td>
+				<td width="35%"><img src="../images/iconos/msn.ico" /> <?php echo $arreglo['nombre'] .' Secci&oacute;n '. $arreglo['nombre_seccion']; ?></td>
 			</tr>
 			<?php
 

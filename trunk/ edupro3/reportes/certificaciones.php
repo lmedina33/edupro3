@@ -63,7 +63,7 @@ else
 					
 					$seleccionar = "SELECT *
 						FROM grado g, secciones s
-						WHERE g.id_grado = s.id_grado";
+						WHERE g.id_grado = s.id_grado AND status = 'Alta'";
 					$ejecutar = mysql_query($seleccionar);
 					
 					echo '<select name="seccion" id="seccion">';

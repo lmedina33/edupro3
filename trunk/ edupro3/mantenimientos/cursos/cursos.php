@@ -79,7 +79,7 @@ function MM_validateForm() { //v4.0
                   <tr>
                     <td><div align="right" class="text1"> Seleccionar el Grado:</div></td>
                     <td><?php 
-			  $seleccionar = "SELECT * FROM grado";
+			  $seleccionar = "SELECT * FROM grado WHERE status = 'Alta'";
 			  $ejecutar = mysql_query($seleccionar);
 			  	echo '<select name="grado" >';
 				echo '<option value="0">Seleccione </option>';

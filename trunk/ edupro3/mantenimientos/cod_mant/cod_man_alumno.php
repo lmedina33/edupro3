@@ -25,14 +25,27 @@ $modificar = "UPDATE alumno
 	WHERE id_alumno ='$id_alumno' AND carne = '$carne'";
 $ejecutar = mysql_query($modificar);
 
-$sql = 'UPDATE reinscripcion
-	SET id_grado = ' . (int) $grado . ', id_seccion = ' . (int) $seccion . '
-	WHERE id_alumno = ' . (int) $id_alumno;
-$ejecutar = mysql_query($sql);
+$sql = 'SELECT *
+	FROM reinscripcion
+	WHERE id_alumno = ' . $id_alumno . '
+	ORDER BY anio DESC
+	LIMIT 1';
+$ejecutar_s = mysql_query($sql);
 
-$sql = 'UPDATE notas
-	SET id_grado = ' . (int) $grado . '
-	WHERE id_alumno = ' . (int) $id_alumno;
+if ($result = mysql_fetch_array($ejecutar_s))
+{
+	$sql = 'UPDATE reinscripcion
+		SET id_grado = ' . (int) $grado . ', id_seccion = ' . (int) $seccion . '
+		WHERE id_alumno = ' . (int) $id_alumno . '
+			AND anio = ' . $result['anio'];
+	$ejecutar = mysql_query($sql);
+
+	$sql = 'UPDATE notas
+		SET id_grado = ' . (int) $grado . '
+		WHERE id_alumno = ' . (int) $id_alumno . '
+			AND id_grado = ' . $result['id_grado'];
+	$enotas = mysql_query($sql);
+}
 
 if($ejecutar)
 {

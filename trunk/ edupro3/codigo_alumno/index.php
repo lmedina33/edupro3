@@ -40,10 +40,11 @@ require_once('../conexion.php');
                     <tr>
                       <td width="58">&nbsp;</td>
                       <td width="669"><form id="form1" name="form1" method="get" action="codigos.php">
+                      Grado: 
                         <select id="grado" name="grado">
 												<?php
                         
-                        $seleccionar = "SELECT * FROM grado WHERE id_grado = 1";
+                        $seleccionar = "SELECT * FROM grado WHERE id_grado = 1 AND status = 'Alta'";
                         $ejecutar = mysql_query($seleccionar);
                         
                         //echo '<option value="0">Seleccione </option>';
@@ -55,6 +56,8 @@ require_once('../conexion.php');
                         
                         ?>
 						  </select>
+						  
+						  Secci&oacute;n: 
                           <select id="seccion" name="seccion">
 												<?php
                         
@@ -70,6 +73,19 @@ require_once('../conexion.php');
                         
                         ?>
 						  </select>
+						  
+						  
+							A&ntilde;o: <select name="anio" id="anio">
+						<?php
+						  
+						  for ($i_year = date('Y'); $i_year >= 2010; $i_year--)
+						  {
+							echo '<option value="' . $i_year . '">' . $i_year . '</option>';
+						  }
+						  
+						  ?>
+					</select>
+						  
                           <label>
                                             <input type="submit" name="Submit" value="Ver Listado..." />
                           </label>
