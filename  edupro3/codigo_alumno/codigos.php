@@ -42,8 +42,9 @@ require_once('../conexion.php');
                       <td width="58">&nbsp;</td>
                       <td width="681" class="Estilo6" style="font-size: 12px">Nombre del Grado: 
                        <?php 
-				$grado = $_GET['grado'];
-				$seccion = $_GET['seccion'];
+				$grado = $_REQUEST['grado'];
+				$seccion = $_REQUEST['seccion'];
+				$anio = $_REQUEST['anio'];
 				
 				$seleccionar = "SELECT *
 					FROM grado g, secciones s
@@ -54,10 +55,7 @@ require_once('../conexion.php');
 				
 				if($arreglo = mysql_fetch_assoc($ejecutar)){
 				}
-				
-				$grado = $_GET['grado'];
-				//$conteo= $arreglo['id_grado'];
-				
+								
 				echo $arreglo['nombre'] . '<br/> <br/> Secci&oacute;n: ', $arreglo['nombre_seccion'];
 				?>				</td>
                       <td width="23"><div align="center"><a href="../index.php"><img src="../images/logo.jpg" width="110" height="117" border="0" title="Ir al inicio..." /></a></div></td>
@@ -72,12 +70,15 @@ require_once('../conexion.php');
               <table width="820">
                 <tr>
                   <td width="810"><?php 
-				$grado = $_GET['grado'];
-				$seccion = $_GET['seccion'];
 				
-				$anio = date("Y");
-				
-				$seleccionar = "SELECT * FROM alumno a, grado g, reinscripcion r WHERE r.id_alumno = a.id_alumno AND g.id_grado = r.id_grado AND r.id_grado = '$grado' AND r.id_seccion = '$seccion' AND r.anio = '$anio' ORDER BY a.apellido, a.nombre_alumno ASC ";
+				$seleccionar = "SELECT *
+					FROM alumno a, grado g, reinscripcion r
+					WHERE r.id_alumno = a.id_alumno
+						AND g.id_grado = r.id_grado
+						AND r.id_grado = '$grado'
+						AND r.id_seccion = '$seccion'
+						AND r.anio = '$anio'
+					ORDER BY a.apellido, a.nombre_alumno ASC ";
 				$ejecutar = mysql_query($seleccionar);
 				
 				$i = 0;

@@ -41,7 +41,7 @@ require_once('../../conexion.php');
 											<td class="text1 a_left"><select id="grado" name="grado">
 												<?php
                         
-                        $seleccionar = "SELECT * FROM grado";
+                        $seleccionar = "SELECT * FROM grado WHERE status = 'Alta'";
                         $ejecutar = mysql_query($seleccionar);
                         
                         //echo '<option value="0">Seleccione </option>';
@@ -91,6 +91,21 @@ require_once('../../conexion.php');
 					echo '</select>';
 					
 					?>
+				</td>
+			</tr>
+			<tr>
+				<td class="text1 a_right">A&ntilde;o:</td>
+				<td>
+					<select name="anio" id="anio">
+						<?php
+						  
+						  for ($i_year = date('Y'); $i_year >= 2010; $i_year--)
+						  {
+							echo '<option value="' . $i_year . '">' . $i_year . '</option>';
+						  }
+						  
+						  ?>
+					</select>
 				</td>
 			</tr>
 			<tr>

@@ -16,14 +16,10 @@ require_once('../../conexion.php');
   <tr>
     <td width="830"><table width="833" border="0" align="center" bgcolor="#FFFFFF">
       <tr>
-        <td width="8" valign="top"><label><br />
-              <br />
-              <br />
-              <a href="../../conexion.php"></a><br />
-        </label></td>
+        <td width="8" valign="top"></td>
         <td width="809"><table width="821" align="center">
               <tr>
-                <td width="806" bgcolor="#4682B4"><div class="title"> Reportes de Alumnos </div></td>
+                <td width="806" bgcolor="#4682B4"><div class="title">Reportes de Alumnos</div></td>
               </tr>
               <tr bgcolor="#F3F3F3">
                 <td bordercolor="#000000" bgcolor="#F3F3F3"><br />
@@ -31,9 +27,11 @@ require_once('../../conexion.php');
                     <tr>
                       <td width="58">&nbsp;</td>
                       <td width="681" class="text1">Nombre del Grado: 
-                       <?php 
+                       <?php
+                       
 				$grado = $_GET['grado'];
 				$seccion = $_GET['seccion'];
+				$anio = date("Y");
 				
 				$seleccionar = "SELECT *
 					FROM grado g, secciones s
@@ -45,10 +43,9 @@ require_once('../../conexion.php');
 				if($arreglo = mysql_fetch_assoc($ejecutar)){
 				}
 				
-				$grado = $_GET['grado'];
-				//$conteo= $arreglo['id_grado'];
 				
 				echo $arreglo['nombre'] . '<br /><br />Secci&oacute;n: ', $arreglo['nombre_seccion'];
+				
 				?>
 				</td>
                       <td width="23"><div align="center"><img src="../../images/logo.jpg" width="110" height="117" /></div></td>
@@ -62,12 +59,15 @@ require_once('../../conexion.php');
               <tr>
                 <td width="810">
 				<?php 
-				$grado = $_GET['grado'];
-				$seccion = $_GET['seccion'];
 				
-				$anio = date("Y");
-				
-				$seleccionar = "SELECT * FROM alumno a, grado g, reinscripcion r WHERE r.id_alumno = a.id_alumno AND g.id_grado = r.id_grado AND r.id_grado = '$grado' AND r.id_seccion = '$seccion' AND r.anio = '$anio' ORDER BY a.apellido, a.nombre_alumno ASC ";
+				$seleccionar = "SELECT *
+					FROM alumno a, grado g, reinscripcion r
+					WHERE r.id_alumno = a.id_alumno
+						AND g.id_grado = r.id_grado
+						AND r.id_grado = '$grado'
+						AND r.id_seccion = '$seccion'
+						AND r.anio = '$anio'
+					ORDER BY a.apellido, a.nombre_alumno ASC ";
 				$ejecutar = mysql_query($seleccionar);
 				
 				$i = 0;
@@ -79,7 +79,7 @@ require_once('../../conexion.php');
                 <td><table width="796" border="0">
                   <tr>
                     <td width="136" class="Estilo11"><?php echo $arreglo['carne']; ?></td>
-                    <td width="430"><?php echo $arreglo['apellido']; ?><?php echo " , " ?><?php echo $arreglo['nombre_alumno']; ?></td>
+                    <td width="430"><?php echo $arreglo['apellido'] . " , " . $arreglo['nombre_alumno']; ?></td>
                     <td width="208">
 											_________________________
 					  </td>
@@ -102,10 +102,6 @@ require_once('../../conexion.php');
 </table>
 </body>
 </html>
-<script language="JavaScript" type="text/javascript">
-document.formulario.carne.focus();
-</script>
-
 
 <script language="JavaScript" type="text/javascript">
 

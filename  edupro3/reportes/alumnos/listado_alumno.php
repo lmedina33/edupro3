@@ -38,10 +38,10 @@ require_once('../../conexion.php');
                       <td width="58">&nbsp;</td>
                       <td width="669">
 						<form action="listado_alumno1.php" method="get" name="form1" target="_blank" id="form1">
-							<select id="grado" name="grado">
+							Grado: <select id="grado" name="grado">
 								<?php
 								
-								$seleccionar = "SELECT * FROM grado";
+								$seleccionar = "SELECT * FROM grado WHERE status = 'Alta'";
 								$ejecutar = mysql_query($seleccionar);
                         
                         //echo '<option value="0">Seleccione </option>';
@@ -52,7 +52,7 @@ require_once('../../conexion.php');
                         }
                         
                         ?>
-						  </select>
+						  </select> Secci&oacute;n: 
                           <select id="seccion" name="seccion">
 												<?php
                         
@@ -69,8 +69,7 @@ require_once('../../conexion.php');
                         ?>
 						  </select>
 						  
-						  <br /><br />
-						  A&ntilde;o:
+                           A&ntilde;o:
 						  <select name="anio">
 						  <?php
 						  
@@ -86,7 +85,10 @@ require_once('../../conexion.php');
                           <label>
                                             <input type="submit" name="Submit" value="Ver Listado..." />
                           </label>
-                      </form>                      </td>
+                      </form> 
+                          
+						  <br /><br />
+						                      </td>
                       <td width="27">&nbsp;</td>
                     </tr>
                   </table>

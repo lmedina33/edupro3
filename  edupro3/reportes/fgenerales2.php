@@ -6,6 +6,7 @@ define('XFS', '../');
 
 $id_seccion = $_POST['seccion'];
 $id_examen = $_POST['examen'];
+$anio = $_POST['anio'];
 
 $sql = 'SELECT *
 	FROM secciones s, grado g
@@ -94,6 +95,7 @@ $sql = 'SELECT *
 	WHERE r.id_alumno = a.id_alumno
 		AND r.id_grado = ' . $secciones['id_grado'] . '
 		AND r.id_seccion = ' . $secciones['id_seccion'] . '
+		AND r.anio = ' . $anio . '
 	ORDER BY a.apellido, a.nombre_alumno';
 $ejecutar = mysql_query($sql);
 

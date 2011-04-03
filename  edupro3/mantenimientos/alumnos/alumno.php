@@ -58,7 +58,7 @@ $reins = mysql_fetch_array($ejecutar2);
 				<td><select id="grado" name="grado">
 					<?php
 					
-					$seleccionar = "SELECT * FROM grado";
+					$seleccionar = "SELECT * FROM grado WHERE status = 'Alta'";
 					$ejecutar = mysql_query($seleccionar);
 					
 					//echo '<option value="0">Seleccione </option>';

@@ -87,6 +87,8 @@ require_once('../../conexion.php');
               <tr>
                 <td width="810">
 				<?php 
+				$anio1 = date('Y');
+				$anio = $_GET['anio'];
 				
 				$seleccionar = "SELECT *
 					FROM alumno a, grado g, reinscripcion r
@@ -107,7 +109,7 @@ require_once('../../conexion.php');
                 <td><table width="796" border="0">
                   <tr>
                     <td width="136" class="Estilo11"><?php echo $arreglo['carne']; ?></td>
-                    <td width="430"><?php echo $arreglo['apellido']; ?><?php echo " , " ?><?php echo $arreglo['nombre_alumno']; ?></td>
+                    <td width="430"><?php echo $arreglo['apellido']." , ".$arreglo['nombre_alumno']; ?></td>
                     <td width="208">
 											<table width="100%" border="1" style="border-collapse:collapse">
 												<tr>

@@ -171,17 +171,22 @@ function MM_validateForm() { //v4.0
 					
 					$seleccionar = "SELECT *
 						FROM grado
-						WHERE id_grado NOT IN (
+						WHERE status = 'Alta' 
+						AND id_grado NOT IN (
 							SELECT id_grado
 							FROM reinscripcion
 							WHERE carne = '$carne'
 						)";
 					$ejecutar = mysql_query($seleccionar);
 					
-					//echo '<option value="0">Seleccione </option>';
-					//por cada registro encontrado en la tabla me genera un <option>
+					$primer_seccion = 0;
 					while ($arreglo = mysql_fetch_array($ejecutar))
 					{
+						if (!$primer_seccion)
+						{
+							$primer_seccion = $arreglo['id_grado'];
+						}
+						
 						echo '<option value="' . $arreglo['id_grado'] . '" >' . $arreglo['nombre'] . '</option>';
 					}
 					
@@ -194,7 +199,7 @@ function MM_validateForm() { //v4.0
                               <td><select id="seccion" name="seccion">
 						<?php
 						
-						$seleccionar = "SELECT * FROM secciones WHERE id_grado = 1";
+						$seleccionar = "SELECT * FROM secciones WHERE id_grado = " . $primer_seccion;
 						$ejecutar = mysql_query($seleccionar);
 						
 						//echo '<option value="0">Seleccione </option>';

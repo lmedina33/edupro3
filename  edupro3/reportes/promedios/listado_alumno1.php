@@ -78,8 +78,6 @@ require_once('../../conexion.php');
                 <td width="810">
 				<?php 
 				
-				$anio = date("Y");
-				
 				$seleccionar = "SELECT *, AVG(n.nota) AS promedio
 					FROM alumno a, grado g, reinscripcion r, notas n, cursos c
 					WHERE r.id_alumno = a.id_alumno
