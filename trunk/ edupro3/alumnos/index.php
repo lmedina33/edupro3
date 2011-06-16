@@ -227,7 +227,7 @@ function validar() {
 				<td><select id="grado" name="grado">
 					<?php
 					
-					$seleccionar = "SELECT * FROM grado WHERE id_grado = 1 AND status = 'Alta'";
+					$seleccionar = "SELECT * FROM grado WHERE status = 'Alta'";
 					$ejecutar = mysql_query($seleccionar);
 					
 					//echo '<option value="0">Seleccione </option>';
@@ -246,7 +246,7 @@ function validar() {
 					<td><select id="seccion" name="seccion">
 						<?php
 						
-						$seleccionar = "SELECT * FROM secciones WHERE id_grado = 1";
+						$seleccionar = "SELECT * FROM secciones";
 						$ejecutar = mysql_query($seleccionar);
 						
 						//echo '<option value="0">Seleccione </option>';
