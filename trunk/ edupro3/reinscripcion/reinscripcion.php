@@ -3,13 +3,15 @@
 require_once('../conexion.php');
 
 $carne = $_GET['carne'];
-$seleccionar = "SELECT * FROM alumno a, grado g WHERE a.id_grado = g.id_grado AND carne ='$carne' ORDER BY a.id_alumno DESC";
+$subcarne = substr($carne, 5);
+
+$seleccionar = "SELECT * FROM alumno a, reinscripcion r, grado g  WHERE r.id_alumno = a.id_alumno AND g.id_grado = r.id_grado AND  a.id_alumno = '$subcarne' ORDER BY a.id_alumno DESC";
 $ejecutar = mysql_query($seleccionar);
 
 if (!$arreglo = mysql_fetch_assoc($ejecutar))
 {
 	header("location: index.php");
-} 
+}
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -81,7 +81,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 	
 	$text_block2 = 'Certifica:';
 	$text_block3 = 'Que el (la) alumno (a): ' . $arreglo['nombre_alumno'] . ' ' . $arreglo['apellido'];
-	$text_block4 = 'Durante el Ciclo Escolar ' . date('Y') . ' curs&oacute; el ' . $grado . ' GRADO DE BACHILLER EN CIENCIAS Y LETRAS  CON ORIENTACION EN COMPUTACION. Con C&oacute;digo Personal: ' . $arreglo['codigo_alumno'] . '. Asignado por el Ministerio de Educaci&oacute;n y que ha tenido a la vista los Cuadros de Registro de Evaluaci&oacute;n en donde aparece que se hizo acreedor (a) a las notas siguientes:';
+	$text_block4 = 'Durante el Ciclo Escolar ' . $anio . ' curs&oacute; el ' . $grado . ' GRADO DE BACHILLER EN CIENCIAS Y LETRAS  CON ORIENTACION EN COMPUTACION. Con C&oacute;digo Personal: ' . $arreglo['codigo_alumno'] . '. Asignado por el Ministerio de Educaci&oacute;n y que ha tenido a la vista los Cuadros de Registro de Evaluaci&oacute;n en donde aparece que se hizo acreedor (a) a las notas siguientes:';
 
 	/*
 	185 de margen derecho13
@@ -191,7 +191,17 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 	
 	$pdf->multitable($infot, 65, $pdf->top(100), 5, 9, 1, array('last_height' => $pdf->top()));
 	
-	$text_block = 'En fe de lo anterior se extiende el presente certificado en Santa Elena de la Cruz, Flores, Pet&eacute;n, a los veintinueve d&iacute;as del mes de octubre del ' . $cv->cv(date('Y')) . '.';
+	switch($anio)
+		{
+		case 2010:
+			$day_string = 'quince';
+			break;
+		case 2011:
+			$day_string = 'catorce';
+			break;
+		}
+	
+	$text_block = 'En fe de lo anterior se extiende el presente certificado en Santa Elena de la Cruz, Flores, Pet&eacute;n, a los ' . $day_string . ' d&iacute;as del mes de octubre del ' . $cv->cv(date('Y')) . '.';
 	
 	$pdf->text_wrap($text_block, 11, $pdf->page_width() - 185, 65, $pdf->top(50), 20);
 	

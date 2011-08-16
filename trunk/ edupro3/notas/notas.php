@@ -122,7 +122,7 @@ encabezado('Ingreso de Calificaciones');
 					AND g.id_grado = ' . (int) $grado . '
 					AND r.id_seccion = ' . (int) $seccion . '
 					AND r.anio = ' . (int) $anio . '
-				ORDER BY a.apellido ASC';
+				ORDER BY a.apellido, a.nombre_alumno ASC';
 			$ejecutar = mysql_query($sql) or die(mysql_error());
 			
 			while($arreglo = mysql_fetch_array($ejecutar))
