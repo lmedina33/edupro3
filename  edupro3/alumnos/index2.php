@@ -59,7 +59,7 @@ function MM_validateForm() { //v4.0
 		  <div id="content2">
 		<?php include('../menu.php'); ?>
 		
-		<div class="title">Alumno Ingresado con �xito</div>
+		<div class="title">Alumno Ingresado con &Eacute;xito</div>
 	</div>
 
 		  </div>

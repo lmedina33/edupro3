@@ -21,7 +21,7 @@ $grado = $_POST['grado'];
 $seccion = $_POST['seccion'];
 
 $modificar = "UPDATE alumno
-	SET codigo_alumno = '$codigo_alumno' , nombre_alumno = '$nombre', apellido = '$apellido', direccion = '$direccion', telefono1 = '$telefono', email = '$email', padre = '$padre', madre = '$madre', id_grado = '$grado'
+	SET codigo_alumno = '$codigo_alumno' , nombre_alumno = '$nombre', apellido = '$apellido', direccion = '$direccion', telefono1 = '$telefono', email = '$email', padre = '$padre', madre = '$madre'
 	WHERE id_alumno ='$id_alumno' AND carne = '$carne'";
 $ejecutar = mysql_query($modificar);
 
