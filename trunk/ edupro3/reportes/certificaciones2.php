@@ -194,19 +194,19 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 	switch($anio)
 		{
 		case 2010:
-			$day_string = 'quince';
+			$day_string = 'veintinueve';
 			break;
 		case 2011:
-			$day_string = 'catorce';
+			$day_string = 'treinta y un';
 			break;
 		}
 	
-	$text_block = 'En fe de lo anterior se extiende el presente certificado en Santa Elena de la Cruz, Flores, Pet&eacute;n, a los ' . $day_string . ' d&iacute;as del mes de octubre del ' . $cv->cv(date('Y')) . '.';
+	$text_block = 'En fe de lo anterior se extiende el presente certificado en Santa Elena de la Cruz, Flores, Pet&eacute;n, a los ' . $day_string . ' d&iacute;as del mes de octubre del ' . $cv->cv($anio) . '.';
 	
 	$pdf->text_wrap($text_block, 11, $pdf->page_width() - 185, 65, $pdf->top(50), 20);
 	
 	$names = array(array(
-		array('text' => 'P.A.P. Carmen Patz&aacute;n Cos', 'align' => 'center'),
+		array('text' => 'P.E.M. Carmen Patz&aacute;n Cos', 'align' => 'center'),
 		array('text' => 'Lic. Edy Josu&eacute; Romero Tz&iacute;n', 'align' => 'center')
 	),
 	array(
