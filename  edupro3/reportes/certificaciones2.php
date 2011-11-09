@@ -77,7 +77,7 @@ while ($arreglo = mysql_fetch_assoc($ejecutar))
 	}
 	
 	
-	$text_block = 'La Infrascrita Oficinista I, del Instituto Nacional de Educaci&oacute;n Diversificada, Adscrito a la Escuela Normal Rural No. 5 &quot;Profesor Julio Edmundo Rosado Pinelo&quot; de Santa Elena de la Cruz, Flores, Pet&eacute;n. Seg&uacute;n Acuerdo Ministerial No. 379 del 26 de febrero del 2009. Resoluci&oacute;n No. 002-2009 de fecha 20 de enero de 2009 DDE-Pet&eacute;n.';
+	$text_block = 'La Infrascrita Oficinista I, del Instituto Nacional de Educaci&oacute;n Diversificada,  &quot;Profesor Julio Edmundo Rosado Pinelo&quot; de Santa Elena de la Cruz, Flores, Pet&eacute;n. Seg&uacute;n Acuerdo Ministerial No. 379 del 26 de febrero del 2009. Resoluci&oacute;n No. 002-2009 de fecha 20 de enero de 2009 DDE-Pet&eacute;n.';
 	
 	$text_block2 = 'Certifica:';
 	$text_block3 = 'Que el (la) alumno (a): ' . $arreglo['nombre_alumno'] . ' ' . $arreglo['apellido'];
